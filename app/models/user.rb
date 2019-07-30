@@ -19,7 +19,10 @@ class User < ApplicationRecord
   validates :password, length: { minimum: 6, allow_nil: true }
 
   attr_reader :password
-  after_initialize :ensure_session_token
+  after_initialize :ensure_session_token, :generate_buying_power
+
+
+  
 
   def self.find_by_credentials(username, password)
     user = User.find_by(username: username)
@@ -50,6 +53,10 @@ class User < ApplicationRecord
 
   def self.generate_session_token
     SecureRandom::urlsafe_base64
+  end
+
+  def generate_buying_power
+    self.buying_power = 5000
   end
 
 end
