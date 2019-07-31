@@ -16,6 +16,7 @@ class SessionForm extends React.Component {
     handleSubmit(e) {
         e.preventDefault();
         const user = Object.assign({}, this.state);
+
         this.props.processForm(user);
     }
 
@@ -25,6 +26,19 @@ class SessionForm extends React.Component {
         }
     }
 
+    renderErrors() {
+        // debugger
+        return (
+            <ul>
+                {this.props.errors.map((error, i) => (
+                    <li key={`error-${i}`}>
+                        {error}
+                    </li>
+                ))}
+            </ul>
+        );
+    }
+
     render() {
         if (this.props.formType === "signup") {
             return (
@@ -32,6 +46,7 @@ class SessionForm extends React.Component {
                     <h2>SignUp</h2>
                     <Link to="/login">Login</Link>
                     <form onSubmit={this.handleSubmit}>
+                        {this.renderErrors()}
                         <label>
                             Username
                         <input type="text" name="{this.props.user.username}" value={this.state.username} onChange={this.handleUpdate("username")} />
@@ -61,6 +76,7 @@ class SessionForm extends React.Component {
                 <h2>LogIn</h2>
                 <Link to="/signup">Signup</Link>
                 <form onSubmit={this.handleSubmit}>
+                    {this.renderErrors()}
                     <label>
                         Username
                         <input type="text" name="{this.props.user.username}" value={this.state.username} onChange={this.handleUpdate("username")} />

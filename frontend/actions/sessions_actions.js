@@ -25,21 +25,39 @@ const receiveErrors = (errors) => {
 }
 
 
-export const login = (currentUser) => {
-    return dispatch => {
-        return SessionApiUtil.login(currentUser).then(payload => {
-            return dispatch(receiveCurrentUser(payload));
-        });
-    };
-};
 
-export const signup = (currentUser) => {
-    return dispatch => {
-        return SessionApiUtil.signup(currentUser).then(payload => {
-            return dispatch(receiveCurrentUser(payload));
-        });
-    };
-};
+
+export const login = currentUser => dispatch => (
+    SessionApiUtil.login(currentUser).then(user => (
+        dispatch(receiveCurrentUser(user))
+    ), err => (
+        dispatch(receiveErrors(err.responseJSON))
+    ))
+);
+
+// export const login = (currentUser) => {
+//     return dispatch => {
+//         return SessionApiUtil.login(currentUser).then(payload => {
+//             return dispatch(receiveCurrentUser(payload));
+//         });
+//     };
+// };
+
+export const signup = currentUser => dispatch => (
+    SessionApiUtil.signup(currentUser).then(user => (
+        dispatch(receiveCurrentUser(user))
+    ), err => (
+        dispatch(receiveErrors(err.responseJSON))
+    ))
+);
+
+// export const signup = (currentUser) => {
+//     return dispatch => {
+//         return SessionApiUtil.signup(currentUser).then(payload => {
+//             return dispatch(receiveCurrentUser(payload));
+//         });
+//     };
+// };
 
 export const logout = () => {
     return dispatch => {

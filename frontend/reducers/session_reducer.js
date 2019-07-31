@@ -1,7 +1,7 @@
 import { RECEIVE_CURRENT_USER, LOGOUT_CURRENT_USER } from '../actions/sessions_actions';
 
 const preloadState = {
-    id: null
+    id: null,
 };
 
 export const sessionReducer = (state = preloadState, action) => {
