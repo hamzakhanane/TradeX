@@ -8,9 +8,9 @@ import {AuthRoute} from "../util/route_util"
 
 const App = () => (
     <div>
-        <header>
+        {/* <header>
             <h1>Trade X</h1>
-        </header>
+        </header> */}
         <Switch>
         <AuthRoute path="/login" component={LoginFormContainer} />
         <AuthRoute path="/signup" component={SignupFormContainer} />

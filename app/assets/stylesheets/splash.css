@@ -1,43 +1,118 @@
+.buttons{
+    position: absolute;
+    top: 10px;
+    right: 10%;
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    font-family: sans-serif;
+    width: 180px;
+}
+
+
+
 .Signup{
     background-color: #21CE99;
     color: white;
     border-radius: 30px;
-    font-size: 16px;
-    position: absolute;
-    top: 10px;
-    right: 7%;
-    height: 50px;
-    padding: 0 24px;
+    border-top: 1px;
+    border-right: 1px;
+    border-bottom: 1px;
+    border-left: 1px;
     font-weight: bold;
+    text-decoration: none;
+    font-family: sans-serif;
+    height: 30px;
+    width: 100px;
+    /* padding-left: 20px; */
+    padding-top: 15px;
+    text-align: center;
+    
 }
+
+
 
 .loginLink{
     color: black;
-    font-weight: bolder;
+    font-weight: bold;
     font-size: 16px;
     text-decoration: none;
-    position: absolute;
-    top: 30px;
-    right: 15%;
+   
+
+}
+.logo{
+    margin-left: 15%;
 
 }
 
 .invest-block{
-    font-size: 48px;
-    font-weight: bold;
-    color: black;
-    margin-top: 15%;
-    display: block;
+    margin-left: 15%;
 }
 
 .loginLink:hover {
     text-decoration: underline;
 }
+
+.Signup:hover {
+    text-decoration: underline;
+}
 .invest-word{
-    margin: 0;
+    font-size: 48px;
+    font-weight: bold;
+    color: black;
+    margin-top: 15%;
+    display: block;
+    margin-bottom: 0;
+    font-family: sans-serif;
+
 
 }
-.commision.word{
-    margin: 0;
+.commision-word{
+    font-size: 48px;
+    font-weight: bold;
+    color: black;
+    margin-top: 0;
+    font-family: sans-serif;
+}
+
+.invest-para{
+     font-family: sans-serif;
+     font-size: 17px;
+     font-weight: 100;
+     margin-left: 15%;
+     margin-bottom: 5%;
+
+}
+.Signup_second{
+    background-color: #21CE99;
+    color: white;
+    border-radius: 30px;
+    border-top: 1px;
+    border-right: 1px;
+    border-bottom: 1px;
+    border-left: 1px;
+    font-weight: bold;
+    text-decoration: none;
+    padding-top: 18px;
+    padding-right: 28px;
+    padding-bottom: 18px;
+    padding-left: 28px;
+    text-align: center;
+    font-family: sans-serif;
+    font-size: 16px;
+    margin-left: 15%;
+    margin-top: 5%;
+
+
+}
+.Signup_second:hover {
+    text-decoration: underline;
+}
+.background-image{
+    width: 40%;
+    height: 40%;
+    float: right;
+    margin-right: 8%;
+    margin-top: 5%;
 
 }
