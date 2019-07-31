@@ -5,7 +5,7 @@ import { connect } from "react-redux";
 const mapStateToProps = (state, ownProp) => {
     return ({
         formType: "login",
-        errors: ["cannot login with invalid credentials"]
+        errors: state.errors.session,
 
     })
 }

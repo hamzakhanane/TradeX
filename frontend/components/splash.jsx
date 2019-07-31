@@ -34,14 +34,18 @@ class Splash extends React.Component {
         else {
             return (
                 <div>
+                    <div>
+                        <Link to="/signup"><button className="Signup">Sign Up</button></Link>
+                        <br>
+                        </br>
+                        <Link className="loginLink" to="/login">Log In</Link>
+                    </div>
+            
+                    <div className="invest-block">
+                        <p className="invest-word">Invest</p>
+                        <p className="commision-word">Commision-Free</p>
 
-                    <Link to="/signup"><button>Signup</button></Link>
-                    <br>
-                    </br>
-                    <Link to="/login"><button>Login</button></Link>
-                    <br>
-                    </br>
-                    <p>Invest Commision-Free</p>
+                    </div>
 
                     <article>Invest in stocks, ETFs, options, and cryptocurrencies, all commission-free, right from your phone or desktop.</article>
 
