@@ -1,0 +1,64 @@
+.welcome_msg{
+    font-family: sans-serif;
+    font-weight: 500;
+}
+label{
+    margin-top: 25px;
+}
+input, label {
+    display:block;
+    align-content: center;
+}
+input{
+    /* border: none; */
+    border-color: transparent;
+    /* height: 48px; */
+    padding: 15px 100px;
+   
+
+}
+input:hover{
+    /* border: 2px; */
+    border-color: lightgray;
+    /* width: 100px; */
+}
+input[type=text]:focus{
+  outline: 2px solid #21CE99; 
+}
+
+input[type=password]:focus{
+  outline: 2px solid #21CE99; 
+}
+
+.form-div{
+    position: absolute;
+    right: 23%;
+    top: 30%;
+    font-family: sans-serif;
+    margin-right: 0;
+}
+
+
+.login-image{
+    width: 55%;
+    height: 100%;
+    float: left;
+    margin-right: 8%;
+    display: flex;
+
+}
+
+.SignIn_Button{
+    min-width: 120px;
+    max-width: 160px;;
+    text-align: center;
+    height: 55px;
+    background-color: #21CE99;
+    font-family: sans-serif;
+    font-weight: bold;
+    color: white;
+    font-size: 13px;
+    border-radius: 5px;
+    margin-top: 30%;
+
+}

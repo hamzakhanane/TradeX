@@ -76,25 +76,29 @@ class SessionForm extends React.Component {
 
         } else {
 
-            return (<div>
-                <h2>LogIn</h2>
-                <Link to="/signup">Signup</Link>
-                <form onSubmit={this.handleSubmit}>
-                    {this.renderErrors()}
-                    <label>
-                        Username
-                        <input type="text" name="{this.props.user.username}" value={this.state.username} onChange={this.handleUpdate("username")} />
-                    </label>
-                    <label>
-                        Password
-                        <input type="password" name="{this.props.user.password}" value={this.state.password} onChange={this.handleUpdate("password")} />
-                    </label>
+            return (
+                <div className="page">
+                    <img className="login-image" src={window.loginImage} />
+                <div className="form-div">
+                        <h2 className="welcome_msg">Welcome to TradeX</h2>
+                        <form className="form" onSubmit={this.handleSubmit}>
+                        {this.renderErrors()}
+                        <label className="username">
+                            Username
+                            <input className="input-username" type="text" name="{this.props.user.username}" value={this.state.username} onChange={this.handleUpdate("username")} />
+                        </label>
+                        <label className="password">
+                            Password
+                            <input className="input-password" type="password" name="{this.props.user.password}" value={this.state.password} onChange={this.handleUpdate("password")} />
+                        </label>
 
-                    <button onClick={this.handleSubmit}>Login</button>
+                        <button className="SignIn_Button" onClick={this.handleSubmit}>Sign In</button>
 
-                </form>
+                        </form>
 
-            </div>)
+                </div>
+            </div >
+            )
 
         }
 
