@@ -12,7 +12,7 @@ class Api::SessionsController < ApplicationController
       login!(@user)
       render "api/users/show"
     else
-       render json: ["user doesnt exist"], status: 422
+       render json: ["username/password invalid"], status: 422
     end
   end
 

@@ -1,0 +1,43 @@
+.Signup{
+    background-color: #21CE99;
+    color: white;
+    border-radius: 30px;
+    font-size: 16px;
+    position: absolute;
+    top: 10px;
+    right: 7%;
+    height: 50px;
+    padding: 0 24px;
+    font-weight: bold;
+}
+
+.loginLink{
+    color: black;
+    font-weight: bolder;
+    font-size: 16px;
+    text-decoration: none;
+    position: absolute;
+    top: 30px;
+    right: 20%;
+
+}
+
+.invest-block{
+    font-size: 48px;
+    font-weight: bold;
+    color: black;
+    margin-top: 15%;
+    display: block;
+}
+
+.loginLink:hover {
+    text-decoration: underline;
+}
+.invest-word{
+    margin: 0;
+
+}
+.commision.word{
+    margin: 0;
+
+}

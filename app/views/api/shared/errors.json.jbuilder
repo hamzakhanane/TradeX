@@ -1,2 +1,1 @@
-debugger
 json.errors @errors
