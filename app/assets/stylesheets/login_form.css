@@ -27,6 +27,7 @@ input, label {
     box-sizing: border-box;
     border: none;
     background-color: #FAFAFA;
+    border-radius: 10px;
 }
 .login-password:hover{
     border-color: lightgray;

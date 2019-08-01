@@ -93,26 +93,29 @@ class SessionForm extends React.Component {
         } else {
 
             return (
+                
                 <div className="page">
-                    <img className="login-image" src={window.loginImage} />
-                <div className="form-div">
-                        <h2 className="welcome_msg">Welcome to TradeX</h2>
-                        <form className="form" onSubmit={this.handleSubmit}>
-                        {this.renderErrors()}
-                        <label className="username">
-                            Username
-                            <input className="login-username" type="text" name="{this.props.user.username}" value={this.state.username} onChange={this.handleUpdate("username")} />
-                        </label>
-                        <label className="password">
-                            Password
-                            <input className="login-password" type="password" name="{this.props.user.password}" value={this.state.password} onChange={this.handleUpdate("password")} />
-                        </label>
-                        <button className="DemoUser_Button" onClick={this.handleDemoUser}>Demo User</button>
-                        <button className="SignIn_Button" onClick={this.handleSubmit}>Sign In</button>
+                    <div>
+                        <img className="login-image" src={window.loginImage} />
+                    </div>
+                    <div className="form-div">
+                            <h2 className="welcome_msg">Welcome to TradeX</h2>
+                            <form className="form" onSubmit={this.handleSubmit}>
+                            {this.renderErrors()}
+                            <label className="username">
+                                Username
+                                <input className="login-username" type="text" name="{this.props.user.username}" value={this.state.username} onChange={this.handleUpdate("username")} />
+                            </label>
+                            <label className="password">
+                                Password
+                                <input className="login-password" type="password" name="{this.props.user.password}" value={this.state.password} onChange={this.handleUpdate("password")} />
+                            </label>
+                            <button className="DemoUser_Button" onClick={this.handleDemoUser}>Demo User</button>
+                            <button className="SignIn_Button" onClick={this.handleSubmit}>Sign In</button>
 
-                        </form>
+                            </form>
 
-                </div>
+                    </div>
             </div >
             )
 
