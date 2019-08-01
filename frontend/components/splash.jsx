@@ -43,10 +43,10 @@ class Splash extends React.Component {
                     <div>
                         <div className="links_home">
     
-                            <a className="a_tag" href="/">
+                            <Link className="a_tag" to="/">
                                 <img className="logo_image" src={window.logoImage} />
-                            </a>
-                            <h3><a href="/" className="logo">TradeX</a></h3>
+                            </Link>
+                            <h3><Link to="/" className="logo">TradeX</Link></h3>
                     
                         </div>
                         <aside className="buttons">

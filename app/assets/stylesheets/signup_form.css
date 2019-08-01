@@ -1,0 +1,104 @@
+.logo_image_signup{
+    position: absolute;
+    margin-left: 25%;
+    height: 50px;
+}
+
+.form_box{
+    margin-left: 25%;
+    margin-top: 10%;
+   
+
+   
+}
+.money{
+    font-family: sans-serif;
+    font-weight: lighter;
+    font-size: 40px;
+    margin-bottom: 0;
+
+}
+.intro{
+     font-family: sans-serif;
+     font-weight: lighter;
+     font-size: 25px;
+     margin-top: 10px;
+
+}
+
+.input_first_name{
+    width: 304px;
+    display: inline-block;
+    height: 50px;
+    margin-bottom: 20px;
+    border-color: solid 2px lightgray;
+    border-radius: 3px;
+    padding: 20px;
+    box-sizing: border-box;
+   
+}
+
+
+.input_last_name{
+    width: 304px;
+    display: inline-block;
+    margin-left: 18px;
+    height: 50px;
+    margin-bottom: 20px;
+    border-color: solid -2px lightgray;
+    border-radius: 3px;
+    padding: 20px;
+    box-sizing: border-box;
+   
+
+}
+.input_username{
+    width: 632px;
+    height: 50px;
+    margin-bottom: 20px;
+    border-color: solid -2px lightgray;
+    border-radius: 3px;
+    padding: 20px;
+    box-sizing: border-box;
+   
+}
+
+.input_password{
+    width: 632px;
+    height: 50px;
+    margin-bottom: 20px;
+    border-color: solid -2px lightgray;
+    border-radius: 3px;
+    padding: 20px;
+    box-sizing: border-box;
+   
+}
+input[type=text]:focus{
+  outline: 2px solid #21CE99; 
+  
+}
+
+input:hover{
+    border-color: lightgray;
+}
+
+input[type=password]:focus{
+  outline: 2px solid #21CE99; 
+}
+
+.continue_button{
+    width: 632px;
+    height: 45px;
+    border-radius: 6px;
+    background-color: #21CE99;
+    color: white;
+    font-size: 15px;
+
+}
+
+
+
+/* .input_box{
+    display: flex;
+   
+} */
