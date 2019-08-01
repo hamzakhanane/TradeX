@@ -2,6 +2,15 @@
     font-family: sans-serif;
     font-weight: 500;
 }
+.page{
+    display: flex;
+}
+.login-img-div{
+    /* background-image: image("./images/login_img.png"); */
+    overflow: hidden;
+    width: 50%;
+    height: 100%;
+}
 label{
     margin-top: 25px;
 }
@@ -15,9 +24,9 @@ input, label {
     height: 40px;
     padding: 15px;
     box-sizing: border-box;
-    border: none;
+    border: 2px solid #FAFAFA;
     background-color: #FAFAFA;
-    border-radius: 10px;
+    border-radius: 3px;
 }
 
 .login-password{
@@ -25,9 +34,9 @@ input, label {
     height: 40px;
     padding: 15px;
     box-sizing: border-box;
-    border: none;
+    border: 2px solid #FAFAFA;
     background-color: #FAFAFA;
-    border-radius: 10px;
+    border-radius: 3px;
 }
 .login-password:hover{
     border-color: lightgray;
@@ -38,20 +47,25 @@ input, label {
 
 
 .form-div{
-    position: absolute;
+    margin-top: 13%;
+    width: 50%;
+    margin-left: 3%;
+    /* position: absolute;
     right: 21%;
-    top: 30%;
+    top: 30%; */
     font-family: sans-serif;
-    margin-right: 0;
+    /* margin-right: 0; */
+    height: 100%;
 }
 
 
 .login-image{
-    width: 55%;
-    height: 100%;
+    width: 100vh;
+    height: 100vh;
     float: left;
     margin-right: 8%;
     display: flex;
+    overflow: hidden;
 
 }
 
@@ -66,8 +80,9 @@ input, label {
     color: white;
     font-size: 13px;
     border-radius: 5px;
-    margin-top: 10%;
+    margin-top: 5%;
     display: block;
+    border: none;
 
 }
 
@@ -82,8 +97,28 @@ input, label {
     color: white;
     font-size: 13px;
     border-radius: 5px;
-    margin-top: 10%;
+    margin-top: 5%;
     display: block;
+    border: none;
 
 }
+.sign_link_login{
+   
+    text-decoration: none;
+    min-width: 120px;
+    max-width: 120px;;
+    text-align: center;
+    /* height: 55px; */
+    background-color: #21CE99;
+    font-family: sans-serif;
+    font-weight: bold;
+    color: white;
+    font-size: 13px;
+    border-radius: 5px;
+    margin-top: 5%;
+    display: block;
+    padding-top: 18px;
+    padding-bottom: 18px;
+}
+
 

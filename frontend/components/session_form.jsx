@@ -12,6 +12,7 @@ class SessionForm extends React.Component {
         };
         this.handleSubmit = this.handleSubmit.bind(this);
         this.handleDemoUser = this.handleDemoUser.bind(this);
+       
     }
 
     componentWillUnmount(){
@@ -39,6 +40,7 @@ class SessionForm extends React.Component {
             this.setState({ [type]: e.target.value });
         }
     }
+    
 
     renderErrors() {
         // debugger
@@ -52,6 +54,7 @@ class SessionForm extends React.Component {
             </ul>
         );
     }
+
 
     render() {
         if (this.props.formType === "signup") {
@@ -95,7 +98,7 @@ class SessionForm extends React.Component {
             return (
                 
                 <div className="page">
-                    <div>
+                    <div className="login-img-div">
                         <img className="login-image" src={window.loginImage} />
                     </div>
                     <div className="form-div">
@@ -110,8 +113,10 @@ class SessionForm extends React.Component {
                                 Password
                                 <input className="login-password" type="password" name="{this.props.user.password}" value={this.state.password} onChange={this.handleUpdate("password")} />
                             </label>
-                            <button className="DemoUser_Button" onClick={this.handleDemoUser}>Demo User</button>
                             <button className="SignIn_Button" onClick={this.handleSubmit}>Sign In</button>
+                            <button className="DemoUser_Button" onClick={this.handleDemoUser}>Demo User</button>
+                            <Link className="sign_link_login" to="/signup">Sign Up</Link>
+                            
 
                             </form>
 
