@@ -47,26 +47,22 @@ class SessionForm extends React.Component {
         if (this.props.formType === "signup") {
             return (
                 <div>
-                    <h2>SignUp</h2>
+                    <h2>Make Your Money Move</h2>
+                    <h3>Robinhoops lets you invest in athletes you love, commission-free.</h3>
                     <Link to="/login">Login</Link>
                     <form onSubmit={this.handleSubmit}>
                         {this.renderErrors()}
-                        <label>
-                            Username
+                       
                         <input type="text" name="{this.props.user.username}" value={this.state.username} onChange={this.handleUpdate("username")} />
-                        </label>
-                        <label>
-                            Password
+                        
                         <input type="password" name="{this.props.user.password}" value={this.state.password} onChange={this.handleUpdate("password")} />
-                        </label>
-                        <label>
-                            Firstname
+                        
+                    
                         <input type="text" name="{this.props.user.first_name}" value={this.state.first_name} onChange={this.handleUpdate("first_name")} />
-                        </label>
-                        <label>
-                            Lastname
+                        
+                        
                         <input type="text" name="{this.props.user.last_name}" value={this.state.last_name} onChange={this.handleUpdate("last_name")} />
-                        </label>
+                
                         <button onClick={this.handleSubmit}> SignUp</button>
 
                     </form>
