@@ -11,10 +11,20 @@ class SessionForm extends React.Component {
             last_name: ""
         };
         this.handleSubmit = this.handleSubmit.bind(this);
+        this.handleDemoUser = this.handleDemoUser.bind(this);
     }
 
     componentWillUnmount(){
         this.props.clearErrors();
+    }
+
+    handleDemoUser(){
+        this.state.username = "demoUser";
+        this.state.password = "hunter12";
+        this.state.first_name = "demo";
+        this.state.last_name = "user";
+        const user = Object.assign({}, this.state);
+        this.props.processForm(user);
     }
 
     handleSubmit(e) {
@@ -97,7 +107,7 @@ class SessionForm extends React.Component {
                             Password
                             <input className="login-password" type="password" name="{this.props.user.password}" value={this.state.password} onChange={this.handleUpdate("password")} />
                         </label>
-
+                        <button className="DemoUser_Button" onClick={this.handleDemoUser}>Demo User</button>
                         <button className="SignIn_Button" onClick={this.handleSubmit}>Sign In</button>
 
                         </form>

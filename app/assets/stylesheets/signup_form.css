@@ -78,9 +78,7 @@ input[type=text]:focus{
   
 }
 
-input:hover{
-    border-color: lightgray;
-}
+
 
 input[type=password]:focus{
   outline: 2px solid #21CE99; 
@@ -90,9 +88,22 @@ input[type=password]:focus{
     width: 632px;
     height: 45px;
     border-radius: 6px;
+    margin-bottom: 20px;
     background-color: #21CE99;
     color: white;
     font-size: 15px;
+    display: block;
+
+
+}
+.DemoUser_Button_SignUp{
+    width: 632px;
+    height: 45px;
+    border-radius: 6px;
+    background-color: #21CE99;
+    color: white;
+    font-size: 15px;
+    display: block;
 
 }
 

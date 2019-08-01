@@ -54,6 +54,22 @@ input, label {
 
 }
 
+.DemoUser_Button{
+    min-width: 120px;
+    max-width: 160px;;
+    text-align: center;
+    height: 55px;
+    background-color: #21CE99;
+    font-family: sans-serif;
+    font-weight: bold;
+    color: white;
+    font-size: 13px;
+    border-radius: 5px;
+    margin-top: 10%;
+    display: block;
+
+}
+
 .SignIn_Button{
     min-width: 120px;
     max-width: 160px;;
@@ -65,6 +81,8 @@ input, label {
     color: white;
     font-size: 13px;
     border-radius: 5px;
-    margin-top: 30%;
+    margin-top: 10%;
+    display: block;
 
 }
+
