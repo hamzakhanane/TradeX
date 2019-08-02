@@ -21,6 +21,16 @@ class User < ApplicationRecord
   attr_reader :password
   after_initialize :ensure_session_token, :generate_buying_power
 
+  has_one: watch_list,
+    primary_key: id,
+    foreign_key: user_id,
+    class_name: "WatchList"
+  
+  has_one: portfolio,
+      primary_key: id,
+      foreign_key: user_id,
+      class_name: "Portfolio"
+
 
   
 
