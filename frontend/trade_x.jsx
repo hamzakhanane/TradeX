@@ -3,6 +3,7 @@ import ReactDOM from 'react-dom';
 import {login,signup,logout} from "./actions/sessions_actions";
 import configureStore from "./store/store";
 import Root from './components/root';
+import {fetchStockInfo} from "./actions/stock_info_actions"
 document.addEventListener('DOMContentLoaded', () => {
     // const store = configureStore();
     let store;
@@ -25,6 +26,7 @@ document.addEventListener('DOMContentLoaded', () => {
     window.login = login;
     window.logout = logout;
     window.signup = signup;
+    window.fetchStockInfo = fetchStockInfo;
 
 
 });

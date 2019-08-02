@@ -8,7 +8,8 @@
     <%= stylesheet_link_tag    'application', media: 'all' %>
     <%= javascript_include_tag 'application' %>
     <script type="text/javascript">
-      window.iexAPIKey = "<%= Rails.application.credentials.iex[:api_key] %>"
+      window.iexAPIKeyPublishable = "<%= Rails.application.credentials.iex[:publishable_key_id] %>"
+      window.iexAPIKeySecret = "<%= Rails.application.credentials.iex[:secret_access_key] %>"
     </script>
   </head>
 
