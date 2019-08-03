@@ -7,7 +7,7 @@ export const StockInfoReducer = (state = {}, action) => {
 
     switch (action.type) {
         case RECEIVE_STOCK_INFO:
-            return Object.assign({}, state, { [action.info.id]: action.info })
+            return Object.assign({}, state, { [1]: action.info })
         default:
             return state;
     }

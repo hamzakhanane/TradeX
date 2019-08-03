@@ -11,8 +11,8 @@ const receiveStockInfo = (info) => {
 }
 
 
-export const fetchStockInfo = () => dispatch => (
-    StockInfoApi.fetchInfo().then(info => (
+export const fetchStockInfo = (ticker) => dispatch => (
+    StockInfoApi.fetchInfo(ticker).then(info => (
         dispatch(receiveStockInfo(info))
     ), err => (
         dispatch(receiveErrors(err.responseJSON))

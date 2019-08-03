@@ -4,5 +4,5 @@ import {StockInfoReducer} from "./stock_info_reducers"
 
 export const entitiesReducer = combineReducers({
     users: usersReducer,
-    stockInfo : StockInfoReducer
+    stocks : StockInfoReducer
 });
