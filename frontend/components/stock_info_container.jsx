@@ -5,7 +5,7 @@ import StockInfo from "../components/stock_info";
 
 
 const mapStateToProps = (state,ownProps)=>{
-    // debugger
+    debugger
     const stock = state.entities.stocks[ownProps.stockId]
     return({
         stock
@@ -13,6 +13,7 @@ const mapStateToProps = (state,ownProps)=>{
 }
 
 const mapDispatchToProps = (dispatch)=>{
+    debugger
     return({
         fetchStockInfo: (ticker)=>dispatch(fetchStockInfo(ticker))
 
