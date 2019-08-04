@@ -7,7 +7,8 @@ class StockInfo extends React.Component{
 
     constructor(props){
         super(props);
-        this.state = {stockinfo: {}, 
+        this.state = {
+        stockinfo: {}, 
         qoute:{}, 
         charts:{
             "1D":[],
@@ -16,6 +17,50 @@ class StockInfo extends React.Component{
         }
     };
     }
+
+
+    componentDidUpdate(prevProps, prevState) {
+        const stockId = this.props.match.params.stockId;
+        if (stockId !== prevProps.match.params.stockId) {
+            this.setState({
+                stockinfo: {},
+                qoute: {},
+                charts: {
+                    "1D": [],
+                    "1M": [],
+                    "1Y": []
+                }
+                
+            });
+           
+            this.props.fetchStock(stockId).then((resp) => {
+                const ticker = resp.stock.ticker
+                fetchInfo(ticker)
+                    .then(stockinfo => this.setState({ stockinfo }));
+                fetchQoutes(ticker)
+                    .then(qoute => this.setState({ qoute }));
+                fetchCharts(ticker, "1D")
+                    .then(charts => {
+                        const newData = Object.assign({}, this.state.charts);
+                        newData["1D"] = this.structureData(charts);
+                        this.setState({ charts: newData })
+                    });
+                fetchCharts(ticker, "1M")
+                    .then(charts => {
+                        const newData = Object.assign({}, this.state.charts);
+                        newData["1M"] = this.structureData(charts);
+                        this.setState({ charts: newData })
+                    });
+                fetchCharts(ticker, "1Y")
+                    .then(charts => {
+                        const newData = Object.assign({}, this.state.charts);
+                        newData["1Y"] = this.structureData(charts);
+                        this.setState({ charts: newData })
+                    });
+            })
+        }
+    }
+
 
     
 
