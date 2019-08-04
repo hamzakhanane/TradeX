@@ -7,13 +7,14 @@
 #   Character.create(name: 'Luke', movie: movies.first)
 
 User.destroy_all
+Stock.destroy_all
 User.create(username: "demoUser", first_name:"demo", last_name:"user", password:"hunter12", buying_power: 25435 )
 Stock.create(company_name: "Apple Inc", ticker:"AAPL")
 Stock.create(company_name: "Microsoft Corporation", ticker:"MSFT")
 Stock.create(company_name: "Google", ticker:"GOOGL")
 Stock.create(company_name: "Google", ticker:"GOOGL")
 Stock.create(company_name: "Facebook Inc", ticker:"FB")
-Stock.create(company_name: "Berkshire Hathaway Inc", ticker:"BRK-B")
+Stock.create(company_name: "Berkshire Hathaway Inc", ticker:"BRK.B")
 Stock.create(company_name: "Johnson & Johnson", ticker:"JNJ")
 Stock.create(company_name: "JPMorgan Chase & Co", ticker:"JPM")
 Stock.create(company_name: "ExxonMobil Corporation", ticker:"XOM")

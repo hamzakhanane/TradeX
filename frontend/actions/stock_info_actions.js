@@ -22,10 +22,15 @@ const receiveStock = (stock)=>{
 export const fetchStockInfo = (ticker) => dispatch => (
     StockInfoApi.fetchInfo(ticker).then(info => (
         dispatch(receiveStockInfo(info))
-    ), err => (
-        dispatch(receiveErrors(err.responseJSON))
-    ))
+    )
+    )
 );
+
+export const fetchStockQoute = (ticker) => dispatch=>(
+    StockInfoApi.fetchQoutes(ticker).then(info =>(dispatch(receiveStockInfo(info))
+    )
+    )
+)
 
 export const fetchStock = (id) => dispatch => (
     StockInfoApi.fetchStock(id).then((stock) =>

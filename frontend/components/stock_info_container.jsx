@@ -1,21 +1,22 @@
 import React from "react";
 import { connect } from "react-redux";
-import {fetchStockInfo} from "../actions/stock_info_actions";
+import {fetchStockInfo,fetchStock} from "../actions/stock_info_actions";
 import StockInfo from "../components/stock_info"; 
 
 
 const mapStateToProps = (state,ownProps)=>{
-    debugger
-    const stock = state.entities.stocks[ownProps.stockId]
+   
+    const stockId = ownProps.match.params.stockId;
+    const stocks = state.entities.stocks
     return({
-        stock
+        stock: stocks[stockId],
     });
 }
 
 const mapDispatchToProps = (dispatch)=>{
-    debugger
     return({
-        fetchStockInfo: (ticker)=>dispatch(fetchStockInfo(ticker))
+        fetchStockInfo: (ticker)=>dispatch(fetchStockInfo(ticker)),
+        fetchStock: (id) => dispatch(fetchStock(id))
 
     });
 }
