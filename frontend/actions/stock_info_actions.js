@@ -1,9 +1,17 @@
 import * as StockInfoApi from '../util/stock_info_api_util';
 
 export const RECEIVE_STOCK_INFO = "RECEIVE_STOCK_INFO";
-export const RECEIVE_STOCK = "RECEIVE_STOCK"
+export const RECEIVE_STOCK = "RECEIVE_STOCK";
+export const RECEIVE_ALL_STOCKS = "RECEIVE_ALL_STOCKS";
 
 
+
+const receiveAllStocks = (stocks)=>{
+    return({
+        type: RECEIVE_ALL_STOCKS,
+        stocks
+    })
+}
 const receiveStockInfo = (info) => {
     return({
         type: RECEIVE_STOCK_INFO,
@@ -17,6 +25,13 @@ const receiveStock = (stock)=>{
         stock
     })
 }
+
+
+export const fetchAllStocks = (name) => dispatch =>(
+    StockInfoApi.fetchAllStocks(name).then(stocks=>(
+        dispatch(receiveAllStocks(stocks))
+    ))
+);
 
 
 export const fetchStockInfo = (ticker) => dispatch => (

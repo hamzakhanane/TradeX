@@ -24,6 +24,7 @@ class Splash extends React.Component {
             logged_in = true;
         }
         if (logged_in) {
+            
             return (
                 <div>
                     <h2>"Welcome {this.props.user.username}"</h2>

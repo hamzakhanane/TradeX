@@ -1,6 +1,7 @@
 import SessionForm from "./session_form";
 import { login, clearErrors } from "../actions/sessions_actions";
 import { connect } from "react-redux";
+import { withRouter } from "react-router-dom";
 
 const mapStateToProps = (state, ownProp) => {
     return ({
@@ -18,4 +19,4 @@ const mapDispatchToProps = (dispatch, ownProps) => {
     })
 }
 
-export const LoginFormContainer = connect(mapStateToProps, mapDispatchToProps)(SessionForm);
+export const LoginFormContainer = withRouter(connect(mapStateToProps, mapDispatchToProps)(SessionForm));

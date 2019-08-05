@@ -1,5 +1,7 @@
 import React from "react";
 import { Link } from 'react-router-dom';
+import { withRouter, Route, Redirect } from 'react-router-dom';
+
 class SessionForm extends React.Component {
 
     constructor(props) {
@@ -26,13 +28,14 @@ class SessionForm extends React.Component {
         this.state.last_name = "user";
         const user = Object.assign({}, this.state);
         this.props.processForm(user);
+        this.props.history.push("/dashboard");
     }
 
     handleSubmit(e) {
         e.preventDefault();
         const user = Object.assign({}, this.state);
-
         this.props.processForm(user);
+        this.props.history.push("/dashboard");
     }
 
     handleUpdate(type) {
@@ -130,4 +133,4 @@ class SessionForm extends React.Component {
 
 }
 
-export default SessionForm;
+export default withRouter(SessionForm);

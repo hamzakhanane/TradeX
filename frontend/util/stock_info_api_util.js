@@ -5,6 +5,15 @@ export const fetchStock = (id) => {
     });
 };
 
+export const fetchAllStocks = (query) =>{
+    return $.ajax({
+        method: "GET",
+        url: "api/stocks",
+        data: {query}
+
+    })
+}
+
 export const fetchCharts = (ticker, timeframe) => {
     return $.ajax({
         method: "GET",
