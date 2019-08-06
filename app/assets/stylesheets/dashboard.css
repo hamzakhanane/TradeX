@@ -1,21 +1,21 @@
  .navbar{
     display: flex;
-    justify-content: center;
-    margin-top: 2%;
+    align-items: center;
+    height: 70px;
+    margin-left: auto;
+
     
 }
+
+
 
 
 
 .logout-dash{
     position: absolute;
     right: 10%;
+    top: 25px;
 
-}
-.search-bar{
-    height:100px;
-    width: 300px;
-  
 }
 
     
@@ -23,6 +23,7 @@
 
  .logo_image_signup_dash{
     position: absolute;
-    left: 15%;
+    left: 5%;
     height: 50px;
+    top: 30px;
 } 

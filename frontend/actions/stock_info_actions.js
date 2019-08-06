@@ -20,7 +20,7 @@ const receiveStockInfo = (info) => {
 }
 
 const receiveStock = (stock)=>{
-    debugger
+   
     return({
         type: RECEIVE_STOCK,
         stock

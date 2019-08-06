@@ -21,8 +21,10 @@ class SearchComponent extends React.Component{
         
     }
 
-    queryUpdate(e) {
-         
+    queryUpdate(e) { 
+        if(this.state.search_q.length===0){
+            this.setState({ searched_stock: [] })
+        }
         this.setState({
                 search_q: e.target.value, 
             
@@ -35,34 +37,41 @@ class SearchComponent extends React.Component{
 
     }
 
-    componentDidUpdate(prevProps){
-        // debugger
-        // const stocks = this.props.stocks;
-        // if (stocks !== prevProps.stocks) {
-        //     this.state={
-        //         searched_stock: [],
-
-        //     }
-        //     this.props.fetchAllStocks(this.state.search_q).then(stocks => this.setState({ searched_stock: stocks }));
-        // }
-    }
+    // componentDidUpdate(prevProps){
+    //     if(this.state.search_q.length===0){
+    //         this.setState({searched_stock:[]})
+    //     }
+       
+        
+    // }
           
            
 
    
 
     render(){
+    
         let stockList=[]
         // debugger
         let arr_stock = Object.values(this.state.searched_stock);
+        if(this.state.search_q.length===0){
+            arr_stock = [];
+        }
         if (arr_stock.length>0){
+            let size = arr_stock.length;
             // debugger
+            if(arr_stock.length>10){
+                size = 10;
+            }
            
-            for (let i = 0; i < arr_stock.length; i++){
+            for (let i = 0; i < size; i++){
                 // debugger
                 let l = `/stock/${arr_stock[i].id}`;
-                stockList.push(<li key={`stock-id${arr_stock[i].id}`}> <Link to={l}>{arr_stock[i].company_name}</Link> {arr_stock[i].ticker}</li>)
-               
+                stockList.push(<Link to={l}>
+                    <li key={`stock-id${arr_stock[i].id}`}>{arr_stock[i].ticker} {arr_stock[i].company_name}</li>
+                </Link>);
+                
+                
             }
            
     
@@ -74,13 +83,17 @@ class SearchComponent extends React.Component{
         return(
 
 
-            <div>
-                <div className="searchContainer">
-                    <input onKeyUp={this.queryUpdate} className="search-bar" type="search" name="" id="" placeholder="Search" />
+            <div className="search">
+             
+                <div className="search-container">
+                    <input className="search-input" onKeyUp={this.queryUpdate} type="search" name="" id="" placeholder="Search" />
+                    <ul className="searchList">
+                        {stockList}
+                    </ul>
+  
                 </div>
-                <ul>
-                    {stockList}
-                </ul>
+                {/* <i className="fas fa-search"></i> */}
+               
 
             </div>
         
