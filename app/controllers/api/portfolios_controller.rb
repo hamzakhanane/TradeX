@@ -1,4 +1,4 @@
-class Api:PortfoliosController < ApplicationController
+class Api::PortfoliosController < ApplicationController
 
     def show
          @portfolio = Portfolio.find(params[:id])
