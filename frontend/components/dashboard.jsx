@@ -18,14 +18,20 @@ class DashBoard extends React.Component{
 
     render(){
             return (
-                <div className="navbar">
-                    <Link className="a_tag_dash" to="/dashboard">
-                        <img className="logo_image_signup_dash" src={window.logoImage} />
-                    </Link>
-                    <SearchContainer className="dash-search"/>
-                    {/* <input className="search-bar" type="search" name="" id="" placeholder="Search"/> */}
-                    {/* <h2>"Welcome {this.props.currentUser.username}!!!"</h2> */}
-                    <button className="logout-dash" onClick={this.handleLogout}>Logout</button>
+                <div>
+                    <ul className="navbar">
+                        <li className="logo-container"><Link className="a_tag_dash" to="/dashboard">
+                            <img className="logo_image_signup_dash" src={window.logoImage} />
+                        </Link></li>
+                        
+                        <li className="dash-search"><SearchContainer/></li>
+                        
+
+                        <li className="logout-dash">
+                            <button onClick={this.handleLogout}>Logout</button>  
+                        </li>
+                        
+                    </ul>
                 </div>
             );
     }

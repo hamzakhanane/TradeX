@@ -1,29 +1,56 @@
  .navbar{
     display: flex;
+    direction: row;
+    justify-content: space-between;
+    padding: 0 40px;
     align-items: center;
-    height: 70px;
-    margin-left: auto;
-
-    
+   
 }
+
 
 
 
 
 
 .logout-dash{
-    position: absolute;
+    display: flex;
+    /* position: absolute;
     right: 10%;
-    top: 25px;
+    top: 25px; */
 
 }
 
     
-
+.logo-container{
+    display: flex;
+    height: 48px;
+    width: 48px;
+    justify-content: center;
+    align-items: center;
+}
 
  .logo_image_signup_dash{
-    position: absolute;
+     
+     width: 30px;
+     height: 30px;
+    /* position: absolute;
     left: 5%;
-    height: 50px;
-    top: 30px;
+    height: 20px;
+    top: 30px; */
 } 
+
+.dash-search{
+    display: flex;
+    max-width: 1024px;
+    flex-direction: column;
+    align-items: flex-start;
+    overflow: auto;
+   
+}
+
+.fa-search:before {
+    content: "\f002";
+    position: absolute;
+    top: 13px;
+    left: 15px;
+}

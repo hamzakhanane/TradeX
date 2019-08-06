@@ -52,7 +52,7 @@ class SearchComponent extends React.Component{
     render(){
     
         let stockList=[]
-        // debugger
+       
         let arr_stock = Object.values(this.state.searched_stock);
         if(this.state.search_q.length===0){
             arr_stock = [];
@@ -67,8 +67,8 @@ class SearchComponent extends React.Component{
             for (let i = 0; i < size; i++){
                 // debugger
                 let l = `/stock/${arr_stock[i].id}`;
-                stockList.push(<Link to={l}>
-                    <li key={`stock-id${arr_stock[i].id}`}>{arr_stock[i].ticker} {arr_stock[i].company_name}</li>
+                stockList.push(<Link className="link" to={l}>
+                    <li className="element"key={`stock-id${arr_stock[i].id}`}>{arr_stock[i].ticker}     {arr_stock[i].company_name}</li>
                 </Link>);
                 
                 
@@ -83,19 +83,26 @@ class SearchComponent extends React.Component{
         return(
 
 
-            <div className="search">
+            
              
-                <div className="search-container">
-                    <input className="search-input" onKeyUp={this.queryUpdate} type="search" name="" id="" placeholder="Search" />
-                    <ul className="searchList">
-                        {stockList}
-                    </ul>
-  
-                </div>
-                {/* <i className="fas fa-search"></i> */}
+        <ul className="search-container">
+            
+           <li className="input-icons">
+                <i class="fas fa-search"></i>
+                <input className="search-input" onKeyUp={this.queryUpdate} type="search" name="" id="" placeholder="Search" />
+            </li>
+            
+            <li>
+
+                <ul className="searchList">
+                    {stockList}
+                </ul>
+            </li>
+        
+         </ul>
                
 
-            </div>
+           
         
         
         );
