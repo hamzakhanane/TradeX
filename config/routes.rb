@@ -8,6 +8,11 @@ Rails.application.routes.draw do
       resources :portfolios, only: [:show, :create, :update, :destroy]
     end
     resource :session, only: [:create, :destroy]
-    resources :stocks, only: [:index, :show]
+    resources :stocks, only: [:index, :show] do
+      collection do 
+        get :search, :action => 'search_post', :as => 'search_post'
+        get 'search/:q', :action => 'search', :as => 'search'
+      end
+    end
   end
 end

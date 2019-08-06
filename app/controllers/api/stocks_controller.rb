@@ -6,11 +6,16 @@ class Api::StocksController < ApplicationController
         render :show
     end
 
-    def index
-        @stocks = Stock.all
-        render :index 
+    # def index
+    #     debugger
+    #     @stocks = Stock.search(params[:company_name])
+    #     render :index 
+    # end
+
+    def search
+       
+       @stocks = Stock.search_q(params[:q])
+       
+       render :index
     end
-
-
-
 end

@@ -8,7 +8,7 @@ export const fetchStock = (id) => {
 export const fetchAllStocks = (query) =>{
     return $.ajax({
         method: "GET",
-        url: "api/stocks",
+        url: `/api/stocks/search/${query}`,
         data: {query}
 
     })

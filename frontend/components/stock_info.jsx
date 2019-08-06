@@ -177,15 +177,15 @@ class StockInfo extends React.Component{
     render(){
         // debugger
         const {stockinfo} = this.state; 
-        debugger
+        // debugger
         const {qoute} = this.state;
-        debugger
+        // debugger
         const { currentPrice} = this.state;
         const day_char = this.state.charts["1D"];
 
         
         // const month_char = this.state.charts["1M"];
-        debugger
+        // debugger
         const month_char = [{ date: "2019-07-05", open: 135.94, close: 137.06}
         ,{ date: "2019-07-08", open: 136.4, close: 136.96 }
         ,{ date: "2019-07-09", open: 136, close: 136.46 }

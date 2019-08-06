@@ -20,6 +20,7 @@ const receiveStockInfo = (info) => {
 }
 
 const receiveStock = (stock)=>{
+    debugger
     return({
         type: RECEIVE_STOCK,
         stock
@@ -27,8 +28,8 @@ const receiveStock = (stock)=>{
 }
 
 
-export const fetchAllStocks = (name) => dispatch =>(
-    StockInfoApi.fetchAllStocks(name).then(stocks=>(
+export const fetchAllStocks = (query) => dispatch =>(
+    StockInfoApi.fetchAllStocks(query).then(stocks=>(
         dispatch(receiveAllStocks(stocks))
     ))
 );

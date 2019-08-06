@@ -3,7 +3,7 @@ import ReactDOM from 'react-dom';
 import {login,signup,logout} from "./actions/sessions_actions";
 import configureStore from "./store/store";
 import Root from './components/root';
-import {fetchStockInfo} from "./actions/stock_info_actions"
+import {fetchStockInfo,fetchAllStocks} from "./actions/stock_info_actions"
 import {fetchInfo,fetchCharts} from "./util/stock_info_api_util"
 document.addEventListener('DOMContentLoaded', () => {
     // const store = configureStore();
@@ -30,6 +30,7 @@ document.addEventListener('DOMContentLoaded', () => {
     window.fetchStockInfo = fetchStockInfo;
     window.fetchInfo = fetchInfo;
     window.fetchCharts = fetchCharts;
+    window.fetchAllStocks = fetchAllStocks;
 
 
 });
