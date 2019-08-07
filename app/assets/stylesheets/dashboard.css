@@ -8,10 +8,6 @@
 }
 
 
-
-
-
-
 .logout-dash{
     display: flex;
     /* position: absolute;
@@ -33,10 +29,7 @@
      
      width: 30px;
      height: 30px;
-    /* position: absolute;
-    left: 5%;
-    height: 20px;
-    top: 30px; */
+    
 } 
 
 .dash-search{
@@ -45,6 +38,7 @@
     flex-direction: column;
     align-items: flex-start;
     overflow: auto;
+    
    
 }
 

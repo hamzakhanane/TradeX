@@ -56,7 +56,7 @@ export const Chart = ({data, openingPrice, minClosing, maxClosing, change, perce
         
         <LineChart width={600} height={300} data={data}>
             <Line connectNulls={true} type="monotone" dataKey="close" dot={false} stroke={stroke_color}/>
-            <Tooltip content={<ChangePrice />} position={{ x: -5, y: -15 }} wrapperStyle={{
+            <Tooltip content={<ChangePrice />} position={{ x: -3, y: -3 }} wrapperStyle={{
                 visibility: 'visible',
             }} />
             <XAxis dataKey="date" hide={true} />
