@@ -6,10 +6,10 @@ import { LineChart, Line, CartesianGrid, XAxis, YAxis, Tooltip } from 'recharts'
 export const Chart = ({data, openingPrice, minClosing, maxClosing, change, percent_change}) =>{
     let stroke_color;
     if(change<0){
-        stroke_color = "#FF0000";
+        stroke_color = "#FF4500";
     }
     else{
-        stroke_color = "#008000";
+        stroke_color = "#21CE99";
     }
     function ChangePrice({ active, payload}) {
         let sign = "+";
@@ -19,10 +19,12 @@ export const Chart = ({data, openingPrice, minClosing, maxClosing, change, perce
 
         if(active===false){
             return (
-                <div>
+                <div className="price-container">
                     <span className="current-price">${Number(openingPrice).toLocaleString()}</span>
-                    <span>${Number(change).toLocaleString()}</span>
-                    <span>{Number(percent_change).toLocaleString()}%</span>
+                    <div className="diff">
+                        <span>${Number(change).toLocaleString()}</span>
+                        <span>({Number(percent_change).toLocaleString()}%)</span>
+                    </div>
                 </div>
             );
         }
@@ -39,10 +41,13 @@ export const Chart = ({data, openingPrice, minClosing, maxClosing, change, perce
             }
             
             return (
-                <div>
-                    <span className="current-price">${Number(payload[0].value.toFixed(2)).toLocaleString()}</span>
-                    <span>{sign}${Number(pricediff.toFixed(2)).toLocaleString()}</span>
-                    <span>{Number(percentDiff).toLocaleString()}%</span>
+                <div className="price-container" >
+
+                    <span className="current-price">${(Number(payload[0].value.toFixed(2)).toLocaleString())}</span>
+                    <div className="diff">
+                        <span>{sign}${Number(pricediff.toFixed(2)).toLocaleString()}</span>
+                        <span>({Number(percentDiff.toFixed(2)).toLocaleString()}%)</span>
+                    </div>
                 </div>
             );
         }
@@ -54,13 +59,13 @@ export const Chart = ({data, openingPrice, minClosing, maxClosing, change, perce
         
 
         
-        <LineChart width={600} height={300} data={data}>
+        <LineChart width={680} height={311} data={data}>
             <Line connectNulls={true} type="monotone" dataKey="close" dot={false} stroke={stroke_color}/>
-            <Tooltip content={<ChangePrice />} position={{ x: -3, y: -3 }} wrapperStyle={{
+            <Tooltip className="tooltip" content={<ChangePrice />} position={{ x: -3, y: -3 }} wrapperStyle={{
                 visibility: 'visible',
             }} />
             <XAxis dataKey="date" hide={true} />
-            <YAxis domain={[minClosing, maxClosing]} hide={true} />
+            <YAxis domain={["dataMin", "dataMax"]}  hide={true}/>
         </LineChart>
             
     )

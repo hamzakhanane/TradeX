@@ -1,6 +1,8 @@
 import React from "react";
 import {fetchInfo,fetchQoutes,fetchCharts} from "../util/stock_info_api_util"
 import {Chart} from "./chart";
+import { Link } from 'react-router-dom';
+import { SearchContainer } from "./search_container";
 import { LineChart, Line, CartesianGrid, XAxis, YAxis, Tooltip } from 'recharts';
 
 class StockInfo extends React.Component{
@@ -21,7 +23,7 @@ class StockInfo extends React.Component{
             "5Y": []
         }
     };
-
+        this.readMore = this.readMore;
         // this.CustomTooltip = this.CustomTooltip.bind(this);
         // this.changePrice = this.changePrice.bind(this);
    
@@ -170,6 +172,23 @@ class StockInfo extends React.Component{
        
     }
 
+    readMore() {
+    var dots = document.getElementById("dots");
+    var moreText = document.getElementById("more");
+    var btnText = document.getElementById("myBtn");
+
+    if (dots.style.display === "none") {
+        dots.style.display = "inline";
+        btnText.innerHTML = "Read more";
+        moreText.style.display = "none";
+    } else {
+        dots.style.display = "none";
+        btnText.innerHTML = "Read less";
+        moreText.style.display = "inline";
+    }
+
+    }
+
 
 
     
@@ -220,30 +239,107 @@ class StockInfo extends React.Component{
         return(
             
             <div>
-                <div>
-                    <h2>{stockinfo.companyName}</h2>
-                    {/* <p >onChange={this.changePrice}>{currentPrice}</p*/}
-                    {/* <p>{qoute.change}{qoute.changePercent}</p> */}
-                </div>
-                <Chart data={month_char} openingPrice={qoute.latestPrice} minClosing={min_closing} maxClosing={max_closing} 
-                change={qoute.change} percent_change={qoute.changePercent} />
-                <div>
-                    <h3>About</h3>
-                    <p>{stockinfo.symbol}</p>
-                    <p>{stockinfo.description}</p>
-                    <p>CEO{stockinfo.CEO}</p>
-                    <p>Employees{stockinfo.employees}</p>
-                    <p>Market Cap {qoute.marketCap}</p>
-                    <p>Volume {qoute.volume}</p>
-                    <p>52 Week High{qoute.week52High}</p>
-                    <p>52 Week Low{qoute.week52Low}</p>
-                    <p>Open Price{qoute.open}</p>
-                    <p>High Today{qoute.high}</p>
-                    <p>Low Today{qoute.low}</p>
-                    <p>Average Volume{qoute.avgTotalVolume}</p>
-                    <p>Price Earning Ratio{qoute.peRatio}</p>
+                
+                <ul className="navbar">
+                    <li className="logo-container"><Link className="a_tag_dash" to="/dashboard">
+                        <img className="logo_image_signup_dash" src={window.logoImage} />
+                    </Link></li>
 
-                </div>
+                    <li className="dash-search"><SearchContainer /></li>
+
+
+                    <li className="logout-dash">
+                        <button onClick={this.handleLogout}>Logout</button>
+                    </li>
+
+                </ul>
+               <div className="content-container">
+                  
+                    <div className="name-container">
+                        <h2 className="header-name">{stockinfo.companyName}</h2>
+                    </div>
+                    <div>
+
+                    
+                        <Chart className="chart" data={month_char} openingPrice={qoute.latestPrice} minClosing={min_closing} maxClosing={max_closing} 
+                        change={qoute.change} percent_change={qoute.changePercent} />
+                    </div>
+                    <div className="chart-buttons">
+                        <button>1D</button>
+                        <button>1W</button>
+                        <button>1M</button>
+                        <button>3M</button>
+                        <button>1Y</button>
+                    </div>
+                    <div className="description-parent">
+                        <div className="about-container">
+                            <h3 className="about-header">About</h3>
+                        </div>
+                        <div className="descriptionContainer">
+                            <p>{stockinfo.description}</p>
+                            {/* <button onclick={this.readMore} id="myBtn">Read more</button> */}
+                        </div>
+
+                        <div className="tags-container">
+                            <div className="description-tag1">
+                                <div>
+                                    <p className="ceo-label">CEO</p>
+                                    <p>{stockinfo.CEO}</p>
+                                </div>
+                                
+
+                                <div className="employee">
+                                    <p className="employee-label">Employees</p>
+                                    <p>{stockinfo.employees}</p>
+                                </div>
+                                <div className="marketcap">
+                                    <p className="marketcap-label">Market Cap</p>
+                                    <p>{qoute.marketCap}</p>
+                                </div>
+
+                                <div className="volume">
+                                    <p>Volume</p>
+                                    <p>{qoute.avgTotalVolume}</p>
+                                </div>
+
+
+                            </div>
+
+                            <div className="description-tag2">
+                                <div>
+                                    <p>52 Week High</p>
+                                    <p>{qoute.week52High}</p>
+                                </div>
+
+                                <div className="low">
+                                    <p>52 Week Low</p>
+                                    <p>{qoute.week52Low}</p>
+                                </div>
+
+                                <div className="openPrice">
+                                    <p>Open Price</p>
+                                    <p>{qoute.open}</p>
+                                </div>
+
+                                <div className="hightoday">
+                                    <p>High Today</p>
+                                    <p>{qoute.high}</p>
+                                </div>
+
+                            </div>
+
+                        </div>
+                       
+                        {/* <div className="description-tag3">
+                            <p>Low Today{qoute.low}</p>
+                            <p>Average Volume{qoute.avgTotalVolume}</p>
+                            <p>Price Earning Ratio{qoute.peRatio}</p>
+
+                        </div> */}
+                        
+
+                    </div>
+                </div> 
 
             </div>
         );
