@@ -3,7 +3,7 @@ import { LineChart, Line, CartesianGrid, XAxis, YAxis, Tooltip } from 'recharts'
 
 
 
-export const Chart = ({data, openingPrice, minClosing, maxClosing, change, percent_change}) =>{
+export const Chart = ({data, openingPrice, change, percent_change}) =>{
     let stroke_color;
     if(change<0){
         stroke_color = "#FF4500";
@@ -61,7 +61,7 @@ export const Chart = ({data, openingPrice, minClosing, maxClosing, change, perce
         
         <LineChart width={680} height={311} data={data}>
             <Line connectNulls={true} type="monotone" dataKey="close" dot={false} stroke={stroke_color}/>
-            <Tooltip className="tooltip" content={<ChangePrice />} position={{ x: -3, y: -3 }} wrapperStyle={{
+            <Tooltip className="tooltip" content={<ChangePrice />} position={{ x: -3, y: -10 }} wrapperStyle={{
                 visibility: 'visible',
             }} />
             <XAxis dataKey="date" hide={true} />
