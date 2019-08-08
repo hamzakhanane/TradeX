@@ -15,6 +15,13 @@ class SearchComponent extends React.Component{
         
     }
 
+    componentDidUpdate(prevProps){
+
+        debugger
+        
+
+    }
+
     componentDidMount(){
         
         this.props.fetchAllStocks(this.state.search_q).then(stocks => this.setState({ searched_stock:this.props.stocks }));
@@ -88,7 +95,7 @@ class SearchComponent extends React.Component{
         <ul className="search-container">
             
            <li className="input-icons">
-                <i class="fas fa-search"></i>
+                <i className="fas fa-search"></i>
                 <input className="search-input" onKeyUp={this.queryUpdate} type="search" name="" id="" placeholder="Search" />
             </li>
             

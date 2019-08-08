@@ -5,7 +5,10 @@
     padding: 0 40px;
     align-items: center;
     height: 5%;
-   
+    
+    position: sticky;
+    top: 0;
+
 }
 
 

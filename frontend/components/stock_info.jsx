@@ -290,8 +290,10 @@ class StockInfo extends React.Component{
         return(
             
             <div className="background">
-                
-                <ul className="navbar">
+                <div className="nav-container">
+
+               
+                    <ul className="navbar">
                     <li className="logo-container"><Link className="a_tag_dash" to="/dashboard">
                         <img className="logo_image_signup_dash" src={window.logoImage} />
                     </Link></li>
@@ -303,7 +305,8 @@ class StockInfo extends React.Component{
                         <button onClick={this.handleLogout}>Logout</button>
                     </li>
 
-                </ul>
+                    </ul>
+                </div>
                <div className="content-container">
                   
                     <div className="name-container">

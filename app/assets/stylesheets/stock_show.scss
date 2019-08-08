@@ -4,12 +4,11 @@
     color: red;
 }
 
-// .background{
-//     background: #1b1b1d;
-//     color: white;
-// }
 
-
+.nav-container {
+    position: sticky;
+    top: 0;
+}
 
 .chart{
      display: flex;
@@ -23,10 +22,9 @@
     margin-left: 15%;
     font-family: sans-serif;
     width: 678px;
+    position: fixed;
 }
-.name-container{
-    /* margin-bottom: 5px; */
-}
+
 
 .header-name{
     font-family: sans-serif;

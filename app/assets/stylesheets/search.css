@@ -4,11 +4,14 @@
     top: 25px;
     width: 402px;
     padding: 0 24px 0 52px;
-    height: 38px;
+    height: 32px;
     border-left: 2px solid lightgray;
     border-right: 2px  solid lightgray;
     border-top: 2px  solid lightgray;
     border-bottom: 1px;
+   
+  
+    
    
     
     /* background-color: #cbcbcd; */
@@ -43,7 +46,7 @@
     border-left: 2px solid lightgray;
     border-right: 2px  solid lightgray;
     border-bottom: 2px solid lightgray;
- 
+    z-index: 10;
     box-shadow: 1px 1px whitesmoke;
 }
 
@@ -56,12 +59,14 @@
           
 
 ul.search-container{
-   
+   /* position: fixed; */
     display: flex;
     flex-direction: column;
     align-items: flex-start;
     justify-items: flex-start;
     max-height: 900px;
+     z-index: 10;
+   
 
   
     
