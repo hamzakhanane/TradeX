@@ -74,6 +74,7 @@ class SearchComponent extends React.Component{
             if(arr_stock.length>10){
                 size = 10;
             }
+        
            
             for (let i = 0; i < size; i++){
                 

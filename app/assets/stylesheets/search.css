@@ -82,6 +82,7 @@ ul.search-container{
 
 .fa-search{
     position: absolute;
+    top: 8px;
 }
 
 .ticker{

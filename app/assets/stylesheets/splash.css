@@ -159,3 +159,23 @@
 .logo:hover {
     color: #21CE99;
 }
+
+.no-manual-container{
+    overflow: hidden;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+}
+
+.no-manual-image{
+    width: 60%;
+    height: 60%;
+    margin: 0 auto;
+
+}
+
+.next-image{
+    width: 100%;
+    margin: 0 auto;
+}

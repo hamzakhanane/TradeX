@@ -81,6 +81,16 @@ class Splash extends React.Component {
                     
                     </div>
 
+                    <div className="no-manual-container">
+                        <img className="no-manual-image" src={window.manual} />
+                    </div>
+
+                    <div className="no-manual-container">
+                        <img className="next-image" src={window.level} />
+                    </div>
+
+                    
+
 
                 </div>
             );
