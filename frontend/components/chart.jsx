@@ -61,7 +61,7 @@ export const Chart = ({data, openingPrice, change, percent_change}) =>{
         
         <LineChart width={680} height={311} data={data}>
             <Line connectNulls={true} type="monotone" dataKey="close" dot={false} stroke={stroke_color}/>
-            <Tooltip className="tooltip" content={<ChangePrice />} position={{ x: -2, y: -10 }} wrapperStyle={{
+            <Tooltip className="tooltip" content={<ChangePrice />} position={{ x: 2, y: -10 }} wrapperStyle={{
                 visibility: 'visible',
             }} />
             <XAxis dataKey="date" hide={true} />
