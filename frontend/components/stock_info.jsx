@@ -11,7 +11,7 @@ class StockInfo extends React.Component{
         super(props);
         this.state = {
         stockinfo: {}, 
-        qoute:{}, 
+        qoute:{},
         currentPrice:0,
         priceChange:0,
         percentChange: 0,

@@ -25,9 +25,9 @@
     
     font-family: sans-serif;
     width: 678px;
-    position: fixed;
+    // position: fixed;
   
-    z-index: -1;
+    // z-index: -1;
     
    
 }
@@ -103,7 +103,7 @@
     padding-top: 12%;
     margin-top: 2%;
     position: relative;
-    z-index: 10000;
+    z-index: -1;
     
 }
 .tags-container{
