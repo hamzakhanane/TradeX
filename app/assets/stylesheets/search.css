@@ -5,10 +5,11 @@
     width: 402px;
     padding: 0 24px 0 52px;
     height: 32px;
-    border-left: 2px solid lightgray;
+    border: none;
+    /* border-left: 2px solid lightgray;
     border-right: 2px  solid lightgray;
-    border-top: 2px  solid lightgray;
-    border-bottom: 1px;
+    border-top: 2px  solid lightgray; */
+    /* border-bottom: 1px; */
    
   
     
@@ -43,9 +44,10 @@
     width: 482px;
     padding-left: 34px;
     padding-bottom: 10px;
-    border-left: 2px solid lightgray;
-    border-right: 2px  solid lightgray;
-    border-bottom: 2px solid lightgray;
+    /* border-left: 1px solid lightgray;
+    border-right: 1px  solid lightgray;
+    border-bottom: 1px solid lightgray; */
+    border: none;
     z-index: 10;
     box-shadow: 1px 1px whitesmoke;
 }
@@ -66,10 +68,6 @@ ul.search-container{
     justify-items: flex-start;
     max-height: 900px;
      z-index: 10;
-   
-
-  
-    
 }
 
 /* li {

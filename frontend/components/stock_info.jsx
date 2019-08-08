@@ -29,12 +29,20 @@ class StockInfo extends React.Component{
         this.oneWeek = this.oneWeek.bind(this);
         this.oneYear = this.oneYear.bind(this);
         this.threeMonths = this.threeMonths.bind(this);
+        this.handleLogout = this.handleLogout.bind(this);
       
         
         // this.CustomTooltip = this.CustomTooltip.bind(this);
         // this.changePrice = this.changePrice.bind(this);
    
     }
+
+    handleLogout() {
+        this.props.logout(this.props.currentUser)
+
+       
+    }
+
 
     oneDay(){
 
@@ -235,6 +243,9 @@ class StockInfo extends React.Component{
         // debugger
         const {qoute} = this.state;
         const {chart_timeframe } = this.state;
+        let active="button-color"
+        
+
         // debugger
         const { currentPrice} = this.state;
         const day_char = this.state.charts["1D"];
@@ -319,11 +330,11 @@ class StockInfo extends React.Component{
                         change={qoute.change} percent_change={qoute.changePercent} />
                     </div>
                     <div className="chart-buttons">
-                        <button onClick={this.oneDay}>1D</button>
-                        <button onClick={this.oneWeek}>1W</button>
-                        <button onClick={this.oneMonth}>1M</button>
-                        <button onClick={this.threeMonths}>3M</button>
-                        <button onClick={this.oneYear}>1Y</button>
+                        <button className={active} onClick={this.oneDay}>1D</button>
+                        <button className={active}  onClick={this.oneWeek}>1W</button>
+                        <button className={active}  onClick={this.oneMonth}>1M</button>
+                        <button className={active}  onClick={this.threeMonths}>3M</button>
+                        <button className={active}  onClick={this.oneYear}>1Y</button>
                     </div>
                     <div className="description-parent">
                         <div className="about-container">

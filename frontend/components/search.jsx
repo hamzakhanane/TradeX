@@ -17,7 +17,11 @@ class SearchComponent extends React.Component{
 
     componentDidUpdate(prevProps){
 
-        debugger
+        if(prevProps.stocks !== this.props.stocks){
+            this.setState({ searched_stock: [] });
+        }
+
+        // this.setState({searched_stock:[]});
         
 
     }
