@@ -79,7 +79,7 @@ class SearchComponent extends React.Component{
                 
                 let l = `/stock/${arr_stock[i].id}`;
                 stockList.push(<Link className="link" to={l}>
-                    <li className="element" key={`stock-id${arr_stock[i].id}`}>  &nbsp;{arr_stock[i].ticker} &nbsp;&nbsp; {arr_stock[i].company_name}</li>
+                    <li className="element" key={`stock-id${arr_stock[i].id}`}>  &nbsp;<span className="ticker">{arr_stock[i].ticker}</span> {arr_stock[i].company_name}</li>
                 </Link>);
                 
                 

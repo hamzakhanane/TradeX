@@ -28,7 +28,7 @@ class DashBoard extends React.Component{
                         
 
                         <li className="logout-dash">
-                            <button onClick={this.handleLogout}>Logout</button>  
+                            <button className="SignIn_Button" onClick={this.handleLogout}>Logout</button>  
                         </li>
                         
                     </ul>

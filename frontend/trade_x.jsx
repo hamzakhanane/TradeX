@@ -4,7 +4,7 @@ import {login,signup,logout} from "./actions/sessions_actions";
 import configureStore from "./store/store";
 import Root from './components/root';
 import {fetchStockInfo,fetchAllStocks} from "./actions/stock_info_actions"
-import {fetchInfo,fetchCharts} from "./util/stock_info_api_util"
+import {fetchInfo,fetchCharts,fetchNews} from "./util/stock_info_api_util"
 document.addEventListener('DOMContentLoaded', () => {
     // const store = configureStore();
     let store;
@@ -31,6 +31,7 @@ document.addEventListener('DOMContentLoaded', () => {
     window.fetchInfo = fetchInfo;
     window.fetchCharts = fetchCharts;
     window.fetchAllStocks = fetchAllStocks;
+    window.fetchNews = fetchNews;
 
 
 });

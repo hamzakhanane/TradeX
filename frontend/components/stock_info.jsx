@@ -1,5 +1,5 @@
 import React from "react";
-import {fetchInfo,fetchQoutes,fetchCharts} from "../util/stock_info_api_util"
+import {fetchInfo,fetchQoutes,fetchCharts,fetchNews} from "../util/stock_info_api_util"
 import {Chart} from "./chart";
 import { Link } from 'react-router-dom';
 import { SearchContainer } from "./search_container";
@@ -22,7 +22,8 @@ class StockInfo extends React.Component{
             "1M": [],
             "3M": [],
             "1Y": [],
-        }
+        },
+        news:{}
     };
         this.oneDay = this.oneDay.bind(this);
         this.oneMonth = this.oneMonth.bind(this);
@@ -97,6 +98,7 @@ class StockInfo extends React.Component{
             this.setState({
                 stockinfo: {},
                 qoute: {},
+                new:{}
                 // chart_timeframe: "month",
                 // charts: {
                 //     "1D": [],
@@ -114,6 +116,8 @@ class StockInfo extends React.Component{
                     .then(stockinfo => this.setState({ stockinfo }));
                 fetchQoutes(ticker)
                     .then(qoute => this.setState({ qoute }));
+                fetchNews(ticker)
+                    .then(news => this.setState({news}));
                 // fetchCharts(ticker, "1D")
                 //     .then(charts => {
                 //         const newData = Object.assign({}, this.state.charts);
@@ -160,6 +164,10 @@ class StockInfo extends React.Component{
                 .then(stockinfo => this.setState({ stockinfo }));
             fetchQoutes(ticker)
                 .then(qoute => this.setState({ qoute }));
+            fetchNews(ticker)
+                .then(news => this.setState({ news }));
+            
+            
             // fetchCharts(ticker, "1D")
             //         .then(charts => {
             //             const newData = Object.assign({}, this.state.charts);
@@ -244,6 +252,8 @@ class StockInfo extends React.Component{
         const {qoute} = this.state;
         const {chart_timeframe } = this.state;
         let active="button-color"
+        const {news} = this.state;
+      
         
 
         // debugger
@@ -294,6 +304,37 @@ class StockInfo extends React.Component{
         // const min_closing = this.findMinClosing(month_char);
         // const max_closing = this.findMaxClosing(month_char);
         let latest_price = 0;
+
+        // let arr_news= 
+        
+        let len = news.length;
+        let arr_news=[]
+        if(news.length>1){
+            if (news.length > 5){
+                len = 4;
+
+            }
+            for(let i=0; i <len; i++){
+                arr_news.push(
+                    <div className="news-element">
+                        <div className="headline-source">
+                            <span className="source">{news[i].source}</span>
+                            <span className="headline"> {news[i].headline}</span>
+                        </div>
+                        
+                        <span>
+                            <a href={news[i].url}> <img src={news[i].image} className="news-image"/>
+                            </a>
+                        </span>
+                    </div>
+
+                )
+            }
+           
+
+        }
+        // debugger
+
     
 
         
@@ -313,7 +354,7 @@ class StockInfo extends React.Component{
 
 
                     <li className="logout-dash">
-                        <button onClick={this.handleLogout}>Logout</button>
+                            <button className="SignIn_Button" onClick={this.handleLogout}>Logout</button>
                     </li>
 
                     </ul>
@@ -402,14 +443,15 @@ class StockInfo extends React.Component{
                             
 
                         </div>
-                       
-                        {/* <div className="description-tag3">
-                            <p>Low Today{qoute.low}</p>
-                            <p>Average Volume{qoute.avgTotalVolume}</p>
-                            <p>Price Earning Ratio{qoute.peRatio}</p>
-
-                        </div> */}
-                        
+                        <div>
+                            <div className="news-header-container">
+                                <span className="news-header">News</span>
+                            </div>
+                           
+                            <ul>
+                                {arr_news}
+                            </ul>
+                        </div>
 
                     </div>
                 </div> 

@@ -35,3 +35,10 @@ export const fetchQoutes = (ticker)=>{
     })
 }
 
+export const fetchNews = (ticker)=>{
+    return $.ajax({
+        method: "",
+        url: `https://cloud.iexapis.com/stable/stock/${ticker}/news/batch?&types=quote&token=${window.iexAPIKeySecret}`
+    })
+}
+

@@ -44,6 +44,7 @@
     /* top: 70px; */
     /* background-color:  #cbcbcd; */
     box-sizing: border-box;
+    
     width: 482px;
     padding-left: 34px;
     padding-bottom: 10px;
@@ -70,8 +71,9 @@ ul.search-container{
     align-items: flex-start;
     justify-items: flex-start;
     max-height: 900px;
-     z-index: 10;
+     /* z-index: 100000; */
 }
+     
 
 /* li {
     height: fit-content;
@@ -81,4 +83,10 @@ ul.search-container{
 .fa-search{
     position: absolute;
 }
+
+.ticker{
+    display: inline-block;
+    min-width: 70px;
+}
+
 
