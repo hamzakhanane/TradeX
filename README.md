@@ -5,13 +5,10 @@
  
  
 # Technologies
-  FrontEnd: React, Redux, HTML/CSS
-  
-  BackEnd: Ruby On Rails, PostgreSQL
-  
-  IEX API
-  
-  Recharts
+  FrontEnd: React, Redux, HTML/CSS . 
+  BackEnd: Ruby On Rails, PostgreSQL . 
+  IEX API . 
+  Recharts . 
   
 
   
