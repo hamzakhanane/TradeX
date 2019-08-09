@@ -6,7 +6,8 @@
     align-items: center;
     height: 5%;
     /* position: fixed; */
-    
+    background-color: white;
+    z-index: 2;
 
 }
 

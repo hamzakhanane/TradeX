@@ -28,6 +28,8 @@ input, label {
 }
 
 
+
+
 .login-username{
     width: 350px;
     height: 40px;
@@ -135,5 +137,25 @@ input, label {
     padding-top: 18px;
     padding-bottom: 18px;
 }
+
+/* .input_first_name, .input_last_name, .input_username, .input_password, :valid {
+        background: url(https://s3-us-west-2.amazonaws.com/s.cdpn.io/3/check.svg);
+        background-size: 20px;
+        background-repeat: no-repeat;
+        background-position: 20px 20px;
+
+} */
+
+.errors{
+      padding: 0 30px 0 50px;
+      color: #999;
+      max-height: 0;
+      transition: 0.28s;
+      overflow: hidden;
+      color: red;
+      font-style: italic;
+}
+
+
 
 

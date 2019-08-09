@@ -48,9 +48,9 @@ class SessionForm extends React.Component {
     renderErrors() {
         // debugger
         return (
-            <ul>
+            <ul className="error">
                 {this.props.errors.map((error, i) => (
-                    <li key={`error-${i}`}>
+                    <li className="error" key={`error-${i}`}>
                         {error}
                     </li>
                 ))}
@@ -77,14 +77,14 @@ class SessionForm extends React.Component {
                             <div className="input_box">
                     
                                 {this.renderErrors()}
-                                <input className="input_first_name" type="text" name="{this.props.user.first_name}" value={this.state.first_name} onChange={this.handleUpdate("first_name")} placeholder="firstname" />
+                                <input required className="input_first_name" type="text" name="{this.props.user.first_name}" value={this.state.first_name} onChange={this.handleUpdate("first_name")} placeholder="firstname" />
 
 
-                                <input className="input_last_name" type="text" name="{this.props.user.last_name}" value={this.state.last_name} onChange={this.handleUpdate("last_name")} placeholder="lastname" />
+                                <input required className="input_last_name" type="text" name="{this.props.user.last_name}" value={this.state.last_name} onChange={this.handleUpdate("last_name")} placeholder="lastname" />
                             
-                                <input className="input_username" type="text" name="{this.props.user.username}" value={this.state.username} onChange={this.handleUpdate("username")} placeholder="username"/>
+                                <input required className="input_username" type="text" name="{this.props.user.username}" value={this.state.username} onChange={this.handleUpdate("username")} placeholder="username"/>
                                 
-                                <input className="input_password" type="password" name="{this.props.user.password}" value={this.state.password} onChange={this.handleUpdate("password")} placeholder="password [min. 6 characters]" />
+                                <input required className="input_password" type="password" name="{this.props.user.password}" value={this.state.password} onChange={this.handleUpdate("password")} placeholder="password [min. 6 characters]" />
                             
                         
                                 <button className="continue_button" onClick={this.handleSubmit}>Continue</button>
@@ -110,11 +110,11 @@ class SessionForm extends React.Component {
                             {this.renderErrors()}
                             <label className="username">
                                 Username
-                                <input className="login-username" type="text" name="{this.props.user.username}" value={this.state.username} onChange={this.handleUpdate("username")} />
+                                <input required className="login-username" type="text" name="{this.props.user.username}" value={this.state.username} onChange={this.handleUpdate("username")} />
                             </label>
                             <label className="password">
                                 Password
-                                <input className="login-password" type="password" name="{this.props.user.password}" value={this.state.password} onChange={this.handleUpdate("password")} />
+                                <input required className="login-password" type="password" name="{this.props.user.password}" value={this.state.password} onChange={this.handleUpdate("password")} />
                             </label>
                             <button className="SignIn_Button" onClick={this.handleSubmit}>Sign In</button>
                             <button className="DemoUser_Button" onClick={this.handleDemoUser}>Demo User</button>
