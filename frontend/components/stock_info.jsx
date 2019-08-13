@@ -1,10 +1,13 @@
 import React from "react";
-import {fetchInfo,fetchQoutes,fetchCharts,fetchNews} from "../util/stock_info_api_util"
+import {fetchInfo,fetchQoutes,fetchCharts,fetchNews} from "../util/stock_info_api_util";
+
 import {Chart} from "./chart";
 import BuySellForm from "./buy_sell_form"
 import { Link } from 'react-router-dom';
 import { SearchContainer } from "./search_container";
 import { LineChart, Line, CartesianGrid, XAxis, YAxis, Tooltip } from 'recharts';
+
+import {createTransaction} from "../actions/stock_info_actions";
 
 class StockInfo extends React.Component{
 

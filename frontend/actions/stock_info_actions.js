@@ -3,9 +3,17 @@ import * as StockInfoApi from '../util/stock_info_api_util';
 export const RECEIVE_STOCK_INFO = "RECEIVE_STOCK_INFO";
 export const RECEIVE_STOCK = "RECEIVE_STOCK";
 export const RECEIVE_ALL_STOCKS = "RECEIVE_ALL_STOCKS";
+export const CREATE_TRANSACTION = "CREATE_TRANSACTION";
 
 
 
+const recieveTransaction = (transaction)=>{
+    return({
+        type: CREATE_TRANSACTION,
+        transaction
+
+    })
+}
 const receiveAllStocks = (stocks)=>{
     return({
         type: RECEIVE_ALL_STOCKS,
@@ -26,6 +34,13 @@ const receiveStock = (stock)=>{
         stock
     })
 }
+
+
+export const createTransaction = (payload) => dispatch =>(
+    StockInfoApi.createTransaction(payload).then(transaction=>(
+        dispatch(recieveTransaction(transaction))
+    ))
+);
 
 
 export const fetchAllStocks = (query) => dispatch =>(

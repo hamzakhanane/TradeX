@@ -42,3 +42,12 @@ export const fetchNews = (ticker)=>{
     })
 }
 
+export const createTransaction = (payload) => {
+    return $.ajax({
+        url: `/api/users/${payload.currentUser.id}/transactions`,
+        method: "POST",
+        data: { payload }
+    });
+
+}
+
