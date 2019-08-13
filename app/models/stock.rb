@@ -22,6 +22,11 @@ class Stock < ApplicationRecord
         foreign_key: :stock_id,
         class_name: "Portfolio"
 
+    has_many :transactions,
+        primary_key: :id,
+        foreign_key: :stock_id,
+        class_name: "Transaction"
+
     def self.search_q(name)
         return where('company_name iLIKE ? or ticker iLIKE ?' ,"%#{name}%","%#{name}%")
     end
