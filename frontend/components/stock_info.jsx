@@ -1,6 +1,7 @@
 import React from "react";
 import {fetchInfo,fetchQoutes,fetchCharts,fetchNews} from "../util/stock_info_api_util"
 import {Chart} from "./chart";
+import BuySellForm from "./buy_sell_form"
 import { Link } from 'react-router-dom';
 import { SearchContainer } from "./search_container";
 import { LineChart, Line, CartesianGrid, XAxis, YAxis, Tooltip } from 'recharts';
@@ -359,8 +360,15 @@ class StockInfo extends React.Component{
 
                     </ul>
                 </div>
-               <div className="content-container">
-                  
+                
+                
+           
+
+
+           
+            <div className="content-container"> 
+                <div className="info-container">
+                    
                     <div className="name-container">
                         <h2 className="header-name">{stockinfo.companyName}</h2>
                     </div>
@@ -454,7 +462,18 @@ class StockInfo extends React.Component{
                         </div>
 
                     </div>
-                </div> 
+                </div>
+
+                
+                <div className="buy-sell-container">
+                    <div className="form-box">
+                        <BuySellForm className="form-container" StockName={stockinfo.symbol} CurrentPrice={qoute.latestPrice} />
+                    </div>
+                </div>
+            </div> 
+
+                
+            
 
             </div>
         );

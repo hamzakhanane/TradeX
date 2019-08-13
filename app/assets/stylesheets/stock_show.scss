@@ -4,6 +4,8 @@
     color: red;
     // transition: color 300ms;
 }
+
+
     
 
 
@@ -19,21 +21,123 @@
     
 }
 
+
+
+
+
 .content-container{
-    max-height: auto;
-    overflow-y: scroll;
-    display: block;
+   
+    display: flex;
     margin-top: 5%;
     margin-left: 13%;
     
     font-family: sans-serif;
-    width: 678px;
+    margin-top: 5%;
+    margin-left: 13%;
+    
     // position: relative;
   
     // z-index: 5;
     
    
 }
+
+.info-container{
+    max-height: auto;
+    overflow-y: scroll;
+    // display: flex;
+    // margin-top: 5%;
+    // margin-left: 13%;
+    margin-right: 5%;
+    width: 50%;
+    height: 100%;
+    
+    font-family: sans-serif;
+}
+
+.buy-sell-container{
+    flex: 0 0 30%;
+}
+
+.form-box{
+    position: fixed;
+    top: 120px;
+    width: 275.77778px;
+}
+
+.form-container{
+    background-color: #fff;
+    box-sizing: border-box;
+    border-color: #f4f4f5;
+    padding: 0 24px;
+    position: relative;
+    box-shadow: 0 0 4px 1px whitesmoke, 0 3px 24px whitesmoke;
+    border-radius: 4px;
+}
+
+.form-heading{
+    align-items: center;
+    border-bottom: 1px solid;
+    display: flex;
+    height: 52px;
+    justify-content: space-between;
+    margin: 0 -24px;
+    padding: 4px 24px 0;
+    margin-bottom: 5%;
+}
+
+.share-input-container{
+     display: flex;
+     height: 52px;
+     justify-content: space-between;
+     padding: 4px 24px 0;
+    margin: 0 -24px;
+    
+}
+
+.share-input{
+    width: 82px;
+    height: 20px;
+}
+
+.market-price{
+    display: flex;
+     height: 52px;
+     justify-content: space-between;
+     padding: 4px 24px 0;
+     border-bottom: 1px solid;
+     margin: 0 -24px;
+     margin-bottom: 5%;
+     
+}
+.estimated-cost{
+     display: flex;
+     height: 52px;
+     justify-content: space-between;
+     padding: 4px 24px 0;
+     margin: 0 -24px;
+     
+
+}
+
+.review-button{
+    height:48px;
+    width: 100%;
+    border: 1px solid transparent;
+    border-radius: 4px;
+    background-color:  #21CE99;
+    margin-bottom: 5%;
+}
+.review-button-container{
+    // border-bottom: 1px solid;
+    margin: 0 -24px;
+    padding: 4px 24px 0;
+
+}
+
+
+
+
 
 
 .header-name{
