@@ -4,9 +4,8 @@ import {RECEIVE_STOCK_INFO, RECEIVE_STOCK,RECEIVE_ALL_STOCKS, CREATE_TRANSACTION
 
 export const StockInfoReducer = (state = {}, action) => {
     Object.freeze(state);
-    
     switch (action.type) {
-
+        
         case RECEIVE_ALL_STOCKS:
             return action.stocks;
         case RECEIVE_STOCK_INFO:
@@ -17,7 +16,6 @@ export const StockInfoReducer = (state = {}, action) => {
         case CREATE_TRANSACTION:
             return Object.assign({},{[action.transaction.id]:action.transaction})
         default:
-            
             return state;
     }
 }

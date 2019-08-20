@@ -1,8 +1,8 @@
 import React from "react";
 import { connect } from "react-redux";
-import {fetchStockInfo,fetchStock} from "../actions/stock_info_actions";
+import {fetchStockInfo,fetchStock,createTransaction} from "../actions/stock_info_actions";
 import StockInfo from "../components/stock_info"; 
-import { logout } from "../actions/sessions_actions";
+import { logout, update} from "../actions/sessions_actions";
 
 
 
@@ -20,9 +20,11 @@ const mapStateToProps = (state, ownProps)=>{
 
 const mapDispatchToProps = (dispatch)=>{
     return({
+        createTransaction: (transaction) => dispatch(createTransaction(transaction)),
         fetchStockInfo: (ticker)=>dispatch(fetchStockInfo(ticker)),
         fetchStock: (id) => dispatch(fetchStock(id)),
-        logout: () => dispatch(logout())
+        logout: () => dispatch(logout()),
+        update: (user) => dispatch(update(user))
 
     });
 }

@@ -1,4 +1,4 @@
-import { RECEIVE_CURRENT_USER, LOGOUT_CURRENT_USER } from '../actions/sessions_actions';
+import { RECEIVE_CURRENT_USER, LOGOUT_CURRENT_USER, UPDATE_USER} from '../actions/sessions_actions';
 
 const preloadState = {
     id: null,
@@ -7,7 +7,12 @@ const preloadState = {
 export const sessionReducer = (state = preloadState, action) => {
     Object.freeze(state);
 
+    
     switch (action.type) {
+
+        case UPDATE_USER:
+            return Object.assign({}, state, action.currentUser)
+
         case RECEIVE_CURRENT_USER:
             return Object.assign({}, state, action.currentUser)
 

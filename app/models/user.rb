@@ -19,7 +19,7 @@ class User < ApplicationRecord
   validates :password, length: { minimum: 6, allow_nil: true }
 
   attr_reader :password
-  after_initialize :ensure_session_token, :generate_buying_power
+  after_initialize :ensure_session_token
 
   has_many :watch_list,
     primary_key: :id,
@@ -70,8 +70,6 @@ class User < ApplicationRecord
     SecureRandom::urlsafe_base64
   end
 
-  def generate_buying_power
-    self.buying_power = 5000
-  end
+ 
 
 end

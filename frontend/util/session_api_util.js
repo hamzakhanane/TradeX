@@ -7,6 +7,15 @@ export const signup = (user) => {
 
 }
 
+export const updateUser = (user) =>{
+   
+    return $.ajax({
+        url: `/api/users/${user.id}`,
+        method: "PATCH",
+        data: {user}
+    })
+}
+
 export const login = (user) => {
     return $.ajax({
         url: "/api/session",
@@ -15,6 +24,8 @@ export const login = (user) => {
     });
 
 }
+
+
 
 export const logout = () => {
     return $.ajax({

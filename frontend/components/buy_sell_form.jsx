@@ -1,5 +1,6 @@
 import React from "react";
 
+
 class BuySellForm extends React.Component{
     constructor(props){
         super(props);
@@ -9,12 +10,38 @@ class BuySellForm extends React.Component{
         }
 
         this.handleUpdate = this.handleUpdate.bind(this);
+        this.handleSubmit = this.handleSubmit.bind(this);
     }
 
 
     componentDidMount(){
         // debugger
        
+    }
+
+    handleSubmit(){
+       
+        let { StockObject } = this.props;
+        let { currentUser } = this.props;
+        if(currentUser.buying_power >= this.state.totalCost){
+            let trans = {};
+            let new_buying_power = currentUser.buying_power - this.state.totalCost;
+            
+            currentUser.buying_power = new_buying_power;
+            this.props.updateUser(currentUser);
+            trans["stock_id"] = StockObject.id;
+            trans["total_cost"] = this.state.totalCost;
+            trans["num_stocks"] = this.state.numShares;
+            trans["currentUser"] = currentUser;
+           
+            let obj = {"transaction":trans};
+            this.props.createTransaction(obj);
+        }
+
+
+        // debugger
+
+
     }
 
 
@@ -40,7 +67,9 @@ class BuySellForm extends React.Component{
 
 
     render(){
-
+        // debugger
+        let {currentUser} = this.props;
+        let {StockObject} = this.props;
         let { StockName } = this.props;
         let { CurrentPrice } = this.props;
         let { totalCost} = this.state;
@@ -74,7 +103,7 @@ class BuySellForm extends React.Component{
                     </div>
 
                     <div className="review-button-container">
-                        <button className="review-button">Review Order</button>
+                        <button onClick={this.handleSubmit} className="review-button">Review Order</button>
                     </div>
                    
                    
