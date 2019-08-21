@@ -54,13 +54,18 @@ class BuySellForm extends React.Component{
     }
 
 
-    // componentDidUpdate(){
-    //    this.state = {
-    //         totalCost: 0,
-    //         numShares: 0,
+    // componentDidUpdate(prevProps, prevState) {
+    //     debugger
+    //     const stockObject = this.props.stockObject;
+    //     if (stockId !== prevProps.stockObject) {
+    //         this.setState({
+    //             totalCost: 0,
+    //             numShares: 0,
     //             message: "",
+    //             button_text: "BUY"
 
-    //    }
+    //         });
+    //     }
     // }
         
         
@@ -69,12 +74,12 @@ class BuySellForm extends React.Component{
 
    
     
-    updateEstimatedPrice(e){
+    // updateEstimatedPrice(e){
 
     
        
 
-    }
+    // }
 
     handleUpdate(type) {
         return (e) => {
