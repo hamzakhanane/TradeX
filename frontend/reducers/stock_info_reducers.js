@@ -1,4 +1,4 @@
-import {RECEIVE_STOCK_INFO, RECEIVE_STOCK,RECEIVE_ALL_STOCKS, CREATE_TRANSACTION} from "../actions/stock_info_actions"
+import {RECEIVE_STOCK_INFO, RECEIVE_STOCK,RECEIVE_ALL_STOCKS, CREATE_TRANSACTION, CREATE_PORTFOLIO} from "../actions/stock_info_actions"
 
 
 
@@ -15,6 +15,9 @@ export const StockInfoReducer = (state = {}, action) => {
 
         case CREATE_TRANSACTION:
             return Object.assign({},{[action.transaction.id]:action.transaction})
+        
+        case CREATE_PORTFOLIO:
+            return Object.assign({},{[action.portfolio.id]:action.portfolio})
         default:
             return state;
     }

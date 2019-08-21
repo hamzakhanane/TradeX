@@ -1,7 +1,7 @@
 class Api::PortfoliosController < ApplicationController
 
     def show
-         @portfolio = Portfolio.find(params[:id])
+        @portfolio = Portfolio.find(params[:id])
         render :show 
 
     end
@@ -37,6 +37,5 @@ class Api::PortfoliosController < ApplicationController
 
     def portfolio_params
         params.require(:portfolio).permit(:stock.id, :num_stocks)
-
     end
 end

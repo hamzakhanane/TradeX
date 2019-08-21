@@ -1,9 +1,11 @@
 import * as StockInfoApi from '../util/stock_info_api_util';
+import * as PortfolioApi from '../util/portfolio_api_util';
 
 export const RECEIVE_STOCK_INFO = "RECEIVE_STOCK_INFO";
 export const RECEIVE_STOCK = "RECEIVE_STOCK";
 export const RECEIVE_ALL_STOCKS = "RECEIVE_ALL_STOCKS";
 export const CREATE_TRANSACTION = "CREATE_TRANSACTION";
+export const CREATE_PORTFOLIO = "CREATE_PORTFOLIO";
 
 
 
@@ -13,6 +15,13 @@ const recieveTransaction = (transaction)=>{
         type: CREATE_TRANSACTION,
         transaction
 
+    })
+}
+
+const receivePortfolio = (portfolio) =>{
+    return({
+        type: CREATE_PORTFOLIO,
+        portfolio
     })
 }
 const receiveAllStocks = (stocks)=>{
@@ -35,6 +44,12 @@ const receiveStock = (stock)=>{
         stock
     })
 }
+
+export const createPortfolio = (payload) => dispatch => (
+    PortfolioApi.createPortfolio(payload).then(portfolio => (
+        dispatch(receivePortfolio(portfolio))
+    ))
+);
 
 
 export const createTransaction = (payload) => dispatch =>(

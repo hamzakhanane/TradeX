@@ -119,7 +119,7 @@ class BuySellForm extends React.Component{
                 <div className="share-input-container">
                 <label>Shares</label>
                 
-                <input className="share-input" type="number" value={this.state.numShares} onChange={this.handleUpdate("numShares")} />
+                <input className="share-input" type="text" value={this.state.numShares} onChange={this.handleUpdate("numShares")} />
                 </div>
 
                 <div className="market-price">
@@ -135,7 +135,7 @@ class BuySellForm extends React.Component{
 
                     </div>
                     <div>
-                        <span>your current buying power is {currentUser.buying_power}</span>
+                        <span>your current buying power is {currentUser.buying_power.toFixed(2)}</span>
                     </div>
                     <div>
                         <span>{this.state.message}</span>
