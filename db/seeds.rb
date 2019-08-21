@@ -9,6 +9,7 @@ require 'csv'
 
 User.destroy_all
 Stock.destroy_all
+Transaction.destroy_all
 User.create(username: "demoUser", first_name:"demo", last_name:"user", password:"hunter12", buying_power: 25435 )
 
 

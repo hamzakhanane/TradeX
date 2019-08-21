@@ -6,11 +6,16 @@ class BuySellForm extends React.Component{
         super(props);
         this.state = {
             totalCost:0,
-            numShares:0
+            numShares:0,
+            message: "",
+            button_text: "BUY"
+            
         }
 
         this.handleUpdate = this.handleUpdate.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
+        this.clickSell = this.clickSell.bind(this);
+        this.clickBuy = this.clickBuy.bind(this);
     }
 
 
@@ -20,7 +25,7 @@ class BuySellForm extends React.Component{
     }
 
     handleSubmit(){
-       
+        debugger
         let { StockObject } = this.props;
         let { currentUser } = this.props;
         if(currentUser.buying_power >= this.state.totalCost){
@@ -37,6 +42,10 @@ class BuySellForm extends React.Component{
             let obj = {"transaction":trans};
             this.props.createTransaction(obj);
         }
+        else{
+            this.setState({ message: "You do not have enough buying power" })
+            
+        }
 
 
         // debugger
@@ -45,9 +54,20 @@ class BuySellForm extends React.Component{
     }
 
 
-    componentDidUpdate(){
+    // componentDidUpdate(){
+    //    this.state = {
+    //         totalCost: 0,
+    //         numShares: 0,
+    //             message: "",
 
-    }
+    //    }
+    // }
+        
+        
+
+        
+
+   
     
     updateEstimatedPrice(e){
 
@@ -65,6 +85,14 @@ class BuySellForm extends React.Component{
         }
     }
 
+    clickSell(){
+        this.setState({button_text:"SELL"})
+    }
+    clickBuy() {
+        this.setState({ button_text: "BUY" })
+    }
+
+
 
     render(){
         // debugger
@@ -79,8 +107,8 @@ class BuySellForm extends React.Component{
 
         <div className="form-container">
             <div className="form-heading">
-                 <button>Buy {StockName}</button>
-                 <button>Sell {StockName}</button>
+                    <button onClick={this.clickBuy}>Buy {StockName}</button>
+                 <button onClick={this.clickSell}>Sell {StockName}</button>
             </div>
            <div className="share-price-container">
                 <div className="share-input-container">
@@ -101,9 +129,15 @@ class BuySellForm extends React.Component{
                         <span>${totalCost.toFixed(2)}</span>
 
                     </div>
+                    <div>
+                        <span>your current buying power is {currentUser.buying_power}</span>
+                    </div>
+                    <div>
+                        <span>{this.state.message}</span>
+                    </div>
 
                     <div className="review-button-container">
-                        <button onClick={this.handleSubmit} className="review-button">Review Order</button>
+                        <button onClick={this.handleSubmit} className="review-button">{this.state.button_text}</button>
                     </div>
                    
                    

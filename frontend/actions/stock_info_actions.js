@@ -8,7 +8,7 @@ export const CREATE_TRANSACTION = "CREATE_TRANSACTION";
 
 
 const recieveTransaction = (transaction)=>{
-    debugger
+    
     return({
         type: CREATE_TRANSACTION,
         transaction
