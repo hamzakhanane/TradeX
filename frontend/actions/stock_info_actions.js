@@ -6,6 +6,8 @@ export const RECEIVE_STOCK = "RECEIVE_STOCK";
 export const RECEIVE_ALL_STOCKS = "RECEIVE_ALL_STOCKS";
 export const CREATE_TRANSACTION = "CREATE_TRANSACTION";
 export const CREATE_PORTFOLIO = "CREATE_PORTFOLIO";
+export const UPDATE_PORTFOLIO = "UPDATE_PORTFOLIO";
+export const GET_PORTFOLIO = "GET_PORTFOLIO";
 
 
 
@@ -15,6 +17,20 @@ const recieveTransaction = (transaction)=>{
         type: CREATE_TRANSACTION,
         transaction
 
+    })
+}
+
+const updatePortfolio = (portfolio)=>{
+    return({
+        type: UPDATE_PORTFOLIO,
+        portfolio
+    })
+}
+
+const getPortfolio = (portfolio) =>{
+    return({
+        type: GET_PORTFOLIO,
+        portfolio
     })
 }
 
@@ -45,9 +61,22 @@ const receiveStock = (stock)=>{
     })
 }
 
+export const receivePort = (user) => dispatch =>(
+    PortfolioApi.GetPortfolio(user).then(portfolio =>(
+        dispatch(getPortfolio(portfolio))
+    ))
+);
+
+
 export const createPortfolio = (payload) => dispatch => (
     PortfolioApi.createPortfolio(payload).then(portfolio => (
         dispatch(receivePortfolio(portfolio))
+    ))
+);
+
+export const update = portfolio => dispatch => (
+    PortfolioApi.updatePortfolio(portfolio).then(portfolio => (
+        dispatch(updatePortfolio(portfolio))
     ))
 );
 

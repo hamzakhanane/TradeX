@@ -4,7 +4,7 @@ import {fetchAllStocks} from "../actions/stock_info_actions";
 import SearchComponent from "./search";
 
 const mapStateToProps = (state,ownProps) =>{
-    // debugger
+   
     const stocks = state.entities.stocks
     return({
         stocks: stocks

@@ -49,6 +49,5 @@ export const createTransaction = (payload) => {
         method: "POST",
         data: payload 
     });
-
 }
 

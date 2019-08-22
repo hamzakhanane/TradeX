@@ -15,7 +15,7 @@ export const Chart = ({data, openingPrice, change, percent_change}) =>{
         let sign = "+";
         let pricediff = 0;
         let percentDiff = 0;
-        // debugger
+     
 
         if(active===false){
             return (

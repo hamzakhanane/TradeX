@@ -3,7 +3,7 @@ import { signup, clearErrors } from "../actions/sessions_actions";
 import { connect } from "react-redux";
 
 const mapStateToProps = (state) => {
-    // debugger
+    
     return ({
         errors: state.errors.session,
         formType: "signup",

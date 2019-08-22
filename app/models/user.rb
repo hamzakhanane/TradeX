@@ -21,12 +21,12 @@ class User < ApplicationRecord
   attr_reader :password
   after_initialize :ensure_session_token
 
-  has_many :watch_list,
+  has_many :watch_lists,
     primary_key: :id,
     foreign_key: :user_id,
     class_name: "WatchList"
   
-  has_many :portfolio,
+  has_many :portfolios,
       primary_key: :id,
       foreign_key: :user_id,
       class_name: "Portfolio"

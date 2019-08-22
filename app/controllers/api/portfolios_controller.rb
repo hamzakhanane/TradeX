@@ -6,7 +6,17 @@ class Api::PortfoliosController < ApplicationController
 
     end
 
+
+    def index
+        
+        @portfolios = Portfolio.get_num_stock(params[:user_id])
+       
+        render :index
+    end
+
+
     def create
+        
         @portfolio = Portfolio.new(portfolio_params)
         @portfolio.user_id = current_user.id
         if @portfolio.save
@@ -36,6 +46,6 @@ class Api::PortfoliosController < ApplicationController
     private
 
     def portfolio_params
-        params.require(:portfolio).permit(:stock.id, :num_stocks)
+        params.require(:portfolio).permit(:stock_id, :num_stocks)
     end
 end

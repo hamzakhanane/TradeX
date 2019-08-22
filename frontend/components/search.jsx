@@ -70,7 +70,7 @@ class SearchComponent extends React.Component{
         }
         if (arr_stock.length>0){
             let size = arr_stock.length;
-            // debugger
+           
             if(arr_stock.length>10){
                 size = 10;
             }
@@ -89,7 +89,7 @@ class SearchComponent extends React.Component{
     
         }
 
-        // debugger
+       
        
         
         return(

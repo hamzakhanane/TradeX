@@ -7,7 +7,7 @@ class Api::StocksController < ApplicationController
     end
 
     # def index
-    #     debugger
+    #    
     #     @stocks = Stock.search(params[:company_name])
     #     render :index 
     # end
