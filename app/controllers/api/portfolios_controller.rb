@@ -28,17 +28,15 @@ class Api::PortfoliosController < ApplicationController
 
     def edit
          @portfolio = Portfolio.find(params[:id])
-        redirect_to api_user_url(@portfolio.user.id) unless @portfolio.user = current_user
-        render :edit
-
+        redirect_to api_user_url(@portfolio.user_id) unless @portfolio.user_id = current_user.id
     end
 
     def update
         @portfolio = Portfolio.find(params[:id])
-        if portfolio.update(portfolio_params) 
-        redirect_to api_user_url(@portfolio.user.id)
+        if @portfolio.update(portfolio_params) 
+            redirect_to api_user_url(@portfolio.user_id) unless @portfolio.user_id = current_user.id
         else 
-        render json: portfolio.errors.full_messages, status: 422 
+            render json: portfolio.errors.full_messages, status: 422 
         end 
 
     end

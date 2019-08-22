@@ -465,7 +465,7 @@ class StockInfo extends React.Component{
                 <div className="buy-sell-container">
                     <div className="form-box">
                         <BuySellForm className="form-container" currentUser={this.props.currentUser} StockObject={this.props.stock} StockName={stockinfo.symbol} CurrentPrice={qoute.latestPrice} createTransaction ={this.props.createTransaction} updateUser = {this.props.update} 
-                        createPortfolio={this.props.createPortfolio} receivePortfolio={this.props.receivePortfolio}/>
+                        createPortfolio={this.props.createPortfolio} receivePortfolio={this.props.receivePortfolio} updatePortfolio={this.props.updatePortfolio}/>
                     </div>
                 </div>
             </div> 

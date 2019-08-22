@@ -74,7 +74,7 @@ export const createPortfolio = (payload) => dispatch => (
     ))
 );
 
-export const update = portfolio => dispatch => (
+export const updatePort = portfolio => dispatch => (
     PortfolioApi.updatePortfolio(portfolio).then(portfolio => (
         dispatch(updatePortfolio(portfolio))
     ))

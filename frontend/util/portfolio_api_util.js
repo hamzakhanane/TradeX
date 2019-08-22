@@ -19,7 +19,7 @@ export const GetPortfolio = (payload) =>{
 export const updatePortfolio = (portfolio) => {
     return $.ajax({
         method: "PATCH",
-        url: `/api/users/${portfolio.currentUser.id}/portfolios/${portfolio.id}`,
+        url: `/api/users/${portfolio.user_id}/portfolios/${portfolio.id}`,
         data: {portfolio}
     })
 }

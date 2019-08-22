@@ -31,7 +31,7 @@ class BuySellForm extends React.Component{
        
     }
     // // setExistingShares(){
-    // //     debugger
+    // //
     // }
 
     handleSubmit(){
@@ -39,27 +39,102 @@ class BuySellForm extends React.Component{
         let { StockObject } = this.props;
         let { currentUser } = this.props;
       
-        
-        
-        if(currentUser.buying_power >= this.state.totalCost){
+        if(this.state.button_text==="BUY"){
+            if (currentUser.buying_power >= this.state.totalCost) {
+                let trans = {};
+                let port = {};
+                let new_buying_power = currentUser.buying_power - this.state.totalCost;
+
+                currentUser.buying_power = new_buying_power;
+                this.props.updateUser(currentUser);
+                port["num_stocks"] = this.state.numShares;
+                port["stock_id"] = StockObject.id;
+                port["currentUser"] = currentUser;
+                trans["stock_id"] = StockObject.id;
+                trans["total_cost"] = this.state.totalCost;
+                trans["num_stocks"] = this.state.numShares;
+                trans["currentUser"] = currentUser;
+
+                let obj = { "transaction": trans };
+                let obj2 = { "portfolio": port };
+                this.props.createTransaction(obj);
+                //update portfolio if already bought
+                let found = false;
+                let { portfolio } = this.state;
+                let owned_stocks = Object.values(portfolio);
+                if (owned_stocks.length > 0) {
+                    for (let i = 0; i < owned_stocks.length; i++) {
+                        if (owned_stocks[i].stock_id === StockObject.id) {
+                            found = true;
+                            let new_num_share = Number(this.state.numShares) + owned_stocks[i].num_stocks
+                            owned_stocks[i].num_stocks = new_num_share;
+                            this.props.updatePortfolio(owned_stocks[i]);
+                        }
+                    }
+                    if (found === false) {
+                        this.props.createPortfolio(obj2);
+                    }
+                }
+                else if (found === false) {
+                    this.props.createPortfolio(obj2);
+                }
+                else {
+                    this.props.createPortfolio(obj2);
+                }
+                this.setState({
+                    totalCost: 0,
+                    numShares: 0,
+                    message: "",
+                    button_text: "BUY"
+
+                });
+               
+            }
+            else {
+                this.setState({ message: "You do not have enough buying power" })
+
+            }
+
+        }
+        else{
+            if(Number(this.state.numShares)===0){alert("please enter a valid number of shares");}
+            let found = false;
             let trans = {};
-            let port = {};
-            let new_buying_power = currentUser.buying_power - this.state.totalCost;
+            let { portfolio } = this.state;
+            let owned_stocks = Object.values(portfolio);
             
-            currentUser.buying_power = new_buying_power;
-            this.props.updateUser(currentUser);
-            port["num_stocks"] = this.state.numShares;
-            port["stock_id"] = StockObject.id;
-            port["currentUser"] = currentUser;
-            trans["stock_id"] = StockObject.id;
-            trans["total_cost"] = this.state.totalCost;
-            trans["num_stocks"] = this.state.numShares;
-            trans["currentUser"] = currentUser;
            
-            let obj = {"transaction":trans};
-            let obj2 = {"portfolio":port};
-            this.props.createTransaction(obj);
-            this.props.createPortfolio(obj2);
+            if (owned_stocks.length > 0) {
+                for (let i = 0; i < owned_stocks.length; i++) {
+                    if (owned_stocks[i].stock_id === StockObject.id) {
+                        found = true;
+                        if (Number(this.state.numShares) <= owned_stocks[i].num_stocks)
+                        {
+                            debugger
+                            let new_buying_power = currentUser.buying_power + this.state.totalCost;
+                            currentUser.buying_power = new_buying_power;
+                            debugger
+                            let new_num_share = owned_stocks[i].num_stocks - Number(this.state.numShares)
+                            owned_stocks[i].num_stocks = new_num_share;
+                            this.props.updatePortfolio(owned_stocks[i]);
+                            trans["stock_id"] = StockObject.id;
+                            trans["total_cost"] = -1 * this.state.totalCost;
+                            trans["num_stocks"] = -1 * this.state.numShares;
+                            trans["currentUser"] = currentUser;
+                            let obj = { "transaction": trans };
+                            debugger
+                            this.props.updateUser(currentUser);
+                            this.props.createTransaction(obj);
+
+                        }
+                        else{
+                            alert("you do not have enough shares");
+                        }
+                    
+                    }
+                }
+            }
+
             this.setState({
                 totalCost: 0,
                 numShares: 0,
@@ -67,16 +142,10 @@ class BuySellForm extends React.Component{
                 button_text: "BUY"
 
             });
-            this.render();
 
         }
-        else{
-            this.setState({ message: "You do not have enough buying power" })
-            
-        }
 
-
-
+        // this.render();
 
     }
 
@@ -128,15 +197,15 @@ class BuySellForm extends React.Component{
         let { portfolio } = this.state;
         let owned_stocks = Object.values(portfolio);
         if (owned_stocks.length > 0) {
-            debugger
             if (typeof StockObject !== 'undefined') {
                 for (let i = 0; i < owned_stocks.length; i++) {
                     if (owned_stocks[i].stock_id === StockObject.id) {
-                        debugger
                        existing_shares = owned_stocks[i].num_stocks
                     }
                 }
             }
+            
+
 
         }
 

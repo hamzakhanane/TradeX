@@ -1,6 +1,6 @@
 import React from "react";
 import { connect } from "react-redux";
-import {fetchStockInfo,fetchStock,createTransaction, createPortfolio, receivePort} from "../actions/stock_info_actions";
+import {fetchStockInfo,fetchStock,createTransaction, createPortfolio, receivePort,updatePort} from "../actions/stock_info_actions";
 import StockInfo from "../components/stock_info"; 
 import { logout, update} from "../actions/sessions_actions";
 
@@ -27,7 +27,9 @@ const mapDispatchToProps = (dispatch)=>{
         logout: () => dispatch(logout()),
         update: (user) => dispatch(update(user)),
         createPortfolio: (portfolio) => dispatch(createPortfolio(portfolio)),
-        receivePortfolio: (portfolio) => dispatch(receivePort(portfolio))
+        receivePortfolio: (portfolio) => dispatch(receivePort(portfolio)),
+        updatePortfolio: (portfolio) => dispatch(updatePort(portfolio))
+
 
     });
 }
