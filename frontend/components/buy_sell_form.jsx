@@ -127,11 +127,11 @@ class BuySellForm extends React.Component{
                             this.props.createTransaction(obj);
 
                         }
-                        else{
-                            alert("you do not have enough shares");
-                        }
-                    
+
                     }
+                }
+                if (found === false) {
+                    alert("you do not have enough shares");
                 }
             }
 
