@@ -35,7 +35,7 @@ document.addEventListener('DOMContentLoaded', () => {
     window.fetchAllStocks = fetchAllStocks;
     window.fetchNews = fetchNews;
     window.GetPortfolio = GetPortfolio;
-    window.receivePortfolio = receivePortfolio;
+   
 
 
 });

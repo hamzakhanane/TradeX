@@ -19,6 +19,21 @@ class BuySellForm extends React.Component{
         
     }
 
+    componentDidUpdate(prevProps, prevState) {
+        debugger
+        // const stockId = this.props.match.params.stockId;
+        // if (stockId !== prevProps.match.params.stockId) {
+        //     this.setState({
+        //         totalCost: 0,
+        //         numShares: 0,
+        //         message: "",
+        //         button_text: "BUY",
+        //         portfolio: {}
+
+        //     });
+        // }
+    }
+
 
     componentDidMount(){
         let { currentUser } = this.props;
@@ -30,9 +45,7 @@ class BuySellForm extends React.Component{
     
        
     }
-    // // setExistingShares(){
-    // //
-    // }
+   
 
     handleSubmit(){
        
@@ -110,10 +123,10 @@ class BuySellForm extends React.Component{
                         found = true;
                         if (Number(this.state.numShares) <= owned_stocks[i].num_stocks)
                         {
-                            debugger
+                            
                             let new_buying_power = currentUser.buying_power + this.state.totalCost;
                             currentUser.buying_power = new_buying_power;
-                            debugger
+                            
                             let new_num_share = owned_stocks[i].num_stocks - Number(this.state.numShares)
                             owned_stocks[i].num_stocks = new_num_share;
                             this.props.updatePortfolio(owned_stocks[i]);
@@ -122,7 +135,7 @@ class BuySellForm extends React.Component{
                             trans["num_stocks"] = -1 * this.state.numShares;
                             trans["currentUser"] = currentUser;
                             let obj = { "transaction": trans };
-                            debugger
+                            
                             this.props.updateUser(currentUser);
                             this.props.createTransaction(obj);
 
@@ -145,7 +158,7 @@ class BuySellForm extends React.Component{
 
         }
 
-        // this.render();
+        this.render();
 
     }
 
@@ -221,7 +234,7 @@ class BuySellForm extends React.Component{
                 <div className="share-input-container">
                 <label>Shares</label>
                 
-                <input className="share-input" type="text" value={this.state.numShares} onChange={this.handleUpdate("numShares")} />
+                <input className="share-input" type="text" onChange={this.handleUpdate("numShares")} placeholder="0" />
                 </div>
 
                 <div className="market-price">
