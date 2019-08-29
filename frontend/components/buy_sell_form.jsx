@@ -1,4 +1,5 @@
 import React from "react";
+import {withRouter} from "react-router-dom";
 
 
 class BuySellForm extends React.Component{
@@ -6,7 +7,7 @@ class BuySellForm extends React.Component{
         super(props);
         this.state = {
             totalCost:0,
-            numShares:0,
+            numShares:null,
             message: "",
             button_text: "BUY",
             portfolio:{}
@@ -19,20 +20,24 @@ class BuySellForm extends React.Component{
         
     }
 
-    componentDidUpdate(prevProps, prevState) {
-        debugger
-        // const stockId = this.props.match.params.stockId;
-        // if (stockId !== prevProps.match.params.stockId) {
-        //     this.setState({
-        //         totalCost: 0,
-        //         numShares: 0,
-        //         message: "",
-        //         button_text: "BUY",
-        //         portfolio: {}
 
-        //     });
-        // }
-    }
+
+   
+
+    // componentDidUpdate(prevProps, prevState) {
+    //     debugger
+    //     // const stockId = this.props.match.params.stockId;
+    //     // if (stockId !== prevProps.match.params.stockId) {
+    //     //     this.setState({
+    //     //         totalCost: 0,
+    //     //         numShares: 0,
+    //     //         message: "",
+    //     //         button_text: "BUY",
+    //     //         portfolio: {}
+
+    //     //     });
+    //     // }
+    // }
 
 
     componentDidMount(){
@@ -44,6 +49,22 @@ class BuySellForm extends React.Component{
         })
     
        
+    }
+
+    componentDidUpdate(prevProps){
+        const stockId = this.props.match.params.stockId;
+        debugger
+        if (stockId !== prevProps.match.params.stockId) {
+            debugger
+            this.setState({
+                totalCost: 0,
+                numShares: 0,
+                message: "",
+                button_text: "BUY",
+                // portfolio: {}
+
+            });
+        }
     }
    
 
@@ -57,7 +78,7 @@ class BuySellForm extends React.Component{
                 let trans = {};
                 let port = {};
                 let new_buying_power = currentUser.buying_power - this.state.totalCost;
-
+                
                 currentUser.buying_power = new_buying_power;
                 this.props.updateUser(currentUser);
                 port["num_stocks"] = this.state.numShares;
@@ -81,26 +102,42 @@ class BuySellForm extends React.Component{
                             found = true;
                             let new_num_share = Number(this.state.numShares) + owned_stocks[i].num_stocks
                             owned_stocks[i].num_stocks = new_num_share;
+                            
                             this.props.updatePortfolio(owned_stocks[i]);
                         }
                     }
                     if (found === false) {
-                        this.props.createPortfolio(obj2);
+                      
+                        this.props.createPortfolio(obj2).then(()=>{
+                            this.props.receivePortfolio(currentUser).then((resp) => {
+                                this.setState({ portfolio: resp.portfolio })
+
+                            })
+
+                        })
                     }
                 }
                 else if (found === false) {
-                    this.props.createPortfolio(obj2);
+                      
+                    this.props.createPortfolio(obj2).then(() => {
+                        this.props.receivePortfolio(currentUser).then((resp) => {
+                            this.setState({ portfolio: resp.portfolio })
+
+                        })
+
+                    })
                 }
                 else {
-                    this.props.createPortfolio(obj2);
-                }
-                this.setState({
-                    totalCost: 0,
-                    numShares: 0,
-                    message: "",
-                    button_text: "BUY"
+                   
+                    this.props.createPortfolio(obj2).then(() => {
+                        this.props.receivePortfolio(currentUser).then((resp) => {
+                            this.setState({ portfolio: resp.portfolio })
 
-                });
+                        })
+
+                    })
+                }
+                this.forceUpdate();
                
             }
             else {
@@ -184,10 +221,9 @@ class BuySellForm extends React.Component{
 
     handleUpdate(type) {
         return (e) => {
-
             this.setState({ [type]: e.target.value });
             this.setState({ ["totalCost"]: Number(e.target.value) * Number(this.props.CurrentPrice)})
-
+        
         }
     }
 
@@ -234,7 +270,7 @@ class BuySellForm extends React.Component{
                 <div className="share-input-container">
                 <label>Shares</label>
                 
-                <input className="share-input" type="text" onChange={this.handleUpdate("numShares")} placeholder="0" />
+                <input className="share-input" type="text" value={this.state.numShares} onChange={this.handleUpdate("numShares")} placeholder="0" />
                 </div>
 
                 <div className="market-price">
@@ -275,4 +311,5 @@ class BuySellForm extends React.Component{
 
     }
 }
-export default BuySellForm;
+
+export default withRouter(BuySellForm);
