@@ -18,6 +18,7 @@ class BuySellForm extends React.Component{
         this.clickSell = this.clickSell.bind(this);
         this.clickBuy = this.clickBuy.bind(this);
         
+        
     }
 
 
@@ -47,6 +48,9 @@ class BuySellForm extends React.Component{
             this.setState({portfolio:resp.portfolio})
            
         })
+
+        this.selecButton();
+        
     
        
     }
@@ -234,6 +238,10 @@ class BuySellForm extends React.Component{
         this.setState({ button_text: "BUY" })
     }
 
+    selecButton(){
+        let buy = document.getElementById("buy").focus();
+       
+    }
 
 
     render(){
@@ -258,13 +266,13 @@ class BuySellForm extends React.Component{
 
         }
 
-      
+        
         return (
-
+            
         <div className="form-container">
             <div className="form-heading">
-                    <button onClick={this.clickBuy}>Buy {StockName}</button>
-                 <button onClick={this.clickSell}>Sell {StockName}</button>
+                    <button id="buy" className="buy-button" onClick={this.clickBuy}>Buy {StockName}</button>
+                 <button className="sell-button" onClick={this.clickSell}>Sell {StockName}</button>
             </div>
            <div className="share-price-container">
                 <div className="share-input-container">
@@ -274,7 +282,7 @@ class BuySellForm extends React.Component{
                 </div>
 
                 <div className="market-price">
-                    <span>Market Price</span>
+                    <span className="market-price-text">Market Price</span>
                     <span>${CurrentPrice}</span>
                 </div>
             </div>
@@ -285,19 +293,24 @@ class BuySellForm extends React.Component{
                         <span>${totalCost.toFixed(2)}</span>
 
                     </div>
-                    <div>
-                        <span>you own {existing_shares} shares</span>
-                    </div>
-                    <div>
-                        <span>your current buying power is {currentUser.buying_power.toFixed(2)}</span>
-                    </div>
-                    <div>
-                        <span>{this.state.message}</span>
-                    </div>
 
                     <div className="review-button-container">
                         <button onClick={this.handleSubmit} className="review-button">{this.state.button_text}</button>
                     </div>
+
+                    <div className="buying-power-container">
+                        <span>{currentUser.buying_power.toFixed(2)} Buying Power Available</span>
+                    </div>
+
+                    <div className="existing-share-container">
+                        <span className="shares-text">You Own {existing_shares} shares</span>
+                    </div>
+                  
+                    <div>
+                        <span>{this.state.message}</span>
+                    </div>
+
+                    
                    
                    
             </div>

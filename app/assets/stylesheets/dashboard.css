@@ -65,7 +65,14 @@
     width: 70%;
 }
 
+.link-to-stock{
+    text-decoration: none;
+    color: black;
 
+}
+.link-to-stock :hover{
+    background-color: whitesmoke;
+}
 .sidebar-container{
     width: 30%;
     height: 100%;
@@ -106,6 +113,7 @@
    margin-bottom: 5%;
    flex-direction: column;   
 }
+
 
 .num-stocks{
     font-size: 13px;

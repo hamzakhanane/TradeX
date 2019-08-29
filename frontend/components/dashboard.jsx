@@ -23,8 +23,10 @@ class DashBoard extends React.Component{
             
             for(let i =0; i<arr.length; i++){
                 if(arr[i].num_stocks>0){
+                   
                     let obj = {};
                     obj["num_stocks"] = arr[i].num_stocks;
+                    obj["stock_id"] = arr[i].stock_id;
                     this.props.fetchStock(arr[i].stock_id).then((resp)=>{
                         obj["ticker"] = resp.stock.ticker;
                         fetchQoutes(resp.stock.ticker).then((resp)=>{
@@ -51,16 +53,22 @@ class DashBoard extends React.Component{
     }
 
     render(){
+        debugger
 
         let bought_stocks = this.state.portfolio.map(stockObj =>{
+
             return(
-                <li className="stock-element">
+
+                <Link className="link-to-stock" to={`/stock/${stockObj.stock_id}`}>
+               
+                    <li className="stock-element">
                     <div className="currentPrice-ticker-container">
                         <span className="stock-ticker">{stockObj.ticker}</span>
                         <span className="price">${stockObj.currentPrice}</span>
                     </div>
                     <span className="num-stocks">{stockObj.num_stocks} Shares</span>
-                </li>
+                    </li>
+                </Link>
 
             );
 
