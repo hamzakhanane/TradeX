@@ -89,7 +89,7 @@
     margin: 0 -24px;
     padding: 4px 24px 0;
     margin-bottom: 5%;
-    border-color: lightgray;
+    border-color: whitesmoke;
 }
 
 .share-input-container{
@@ -105,6 +105,14 @@
     width: 82px;
     height: 20px;
     padding-left: 10px;
+   
+    // border-radius: 4px;
+}
+
+.error-container{
+    font-weight: 600;
+    margin-bottom: 2%;
+    font-size: 12px;
 }
 
 .market-price{
@@ -115,7 +123,7 @@
      border-bottom: 1px solid;
      margin: 0 -24px;
      margin-bottom: 5%;
-     border-color: lightgray;
+     border-color: whitesmoke;
      
 }
 .estimated-cost{
@@ -140,7 +148,7 @@
 }
 .review-button-container{
     border-bottom: 1px solid;
-    border-color: lightgray;
+    border-color: whitesmoke;
     margin: 0 -24px;
     padding: 4px 24px 0;
 
@@ -162,7 +170,7 @@
 .existing-share-container{
     display: flex;
     border-top: 1px solid;
-    border-color: lightgray;
+    border-color: whitesmoke;
     font-size: 13px;
     height: 32px;
     margin: 0 -24px;
@@ -210,7 +218,12 @@
 
 
 
-
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+    /* display: none; <- Crashes Chrome on hover */
+    -webkit-appearance: none;
+    margin: 0; /* <-- Apparently some margin are still there even though it's hidden */
+}
 
 
 .header-name{

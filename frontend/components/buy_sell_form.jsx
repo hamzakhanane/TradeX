@@ -50,6 +50,7 @@ class BuySellForm extends React.Component{
         })
 
         this.selecButton();
+        document.getElementById("error").style.display = "none";
         
     
        
@@ -145,23 +146,26 @@ class BuySellForm extends React.Component{
                
             }
             else {
-                this.setState({ message: "You do not have enough buying power" })
+                document.getElementById("error").style.display = "block";
+                this.setState({ message: "Not Enough Buying Power" })
 
             }
 
         }
         else{
-            if(Number(this.state.numShares)===0){alert("please enter a valid number of shares");}
+            if (Number(this.state.numShares) === 0) { 
+                document.getElementById("error").style.display = "block";
+                this.setState({ message: "Please Enter A Valid Number" })}
             let found = false;
             let trans = {};
             let { portfolio } = this.state;
             let owned_stocks = Object.values(portfolio);
             
-           
             if (owned_stocks.length > 0) {
                 for (let i = 0; i < owned_stocks.length; i++) {
                     if (owned_stocks[i].stock_id === StockObject.id) {
                         found = true;
+                        
                         if (Number(this.state.numShares) <= owned_stocks[i].num_stocks)
                         {
                             
@@ -180,6 +184,9 @@ class BuySellForm extends React.Component{
                             this.props.updateUser(currentUser);
                             this.props.createTransaction(obj);
 
+                        }else{
+                            document.getElementById("error").style.display = "block";
+                            this.setState({ message: "You Do Not Have Enough Shares" })
                         }
 
                     }
@@ -189,13 +196,13 @@ class BuySellForm extends React.Component{
                 }
             }
 
-            this.setState({
-                totalCost: 0,
-                numShares: 0,
-                message: "",
-                button_text: "BUY"
+            // this.setState({
+            //     totalCost: 0,
+            //     numShares: 0,
+            //     message: "",
+            //     button_text: "BUY"
 
-            });
+            // });
 
         }
 
@@ -225,6 +232,7 @@ class BuySellForm extends React.Component{
 
     handleUpdate(type) {
         return (e) => {
+            
             this.setState({ [type]: e.target.value });
             this.setState({ ["totalCost"]: Number(e.target.value) * Number(this.props.CurrentPrice)})
         
@@ -278,8 +286,9 @@ class BuySellForm extends React.Component{
                 <div className="share-input-container">
                 <label>Shares</label>
                 
-                <input className="share-input" type="text" value={this.state.numShares} onChange={this.handleUpdate("numShares")} placeholder="0" />
+                <input className="share-input" type="number" value={this.state.numShares} onChange={this.handleUpdate("numShares")} placeholder="0" />
                 </div>
+                
 
                 <div className="market-price">
                     <span className="market-price-text">Market Price</span>
@@ -291,10 +300,17 @@ class BuySellForm extends React.Component{
                     <div className="estimated-cost">
                         <span>Estimated Cost</span>
                         <span>${totalCost.toFixed(2)}</span>
-
+                        
                     </div>
 
                     <div className="review-button-container">
+                        
+                        <div className="error-container" id="error">
+                            <i class="fas fa-exclamation-circle"></i>
+                            <span>  {this.state.message}</span>
+                        </div>
+                        
+                      
                         <button onClick={this.handleSubmit} className="review-button">{this.state.button_text}</button>
                     </div>
 
@@ -306,12 +322,8 @@ class BuySellForm extends React.Component{
                         <span className="shares-text">You Own {existing_shares} shares</span>
                     </div>
                   
-                    <div>
-                        <span>{this.state.message}</span>
-                    </div>
-
-                    
-                   
+        
+                       
                    
             </div>
 
