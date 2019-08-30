@@ -53,7 +53,7 @@ class DashBoard extends React.Component{
     }
 
     render(){
-        debugger
+        
 
         let bought_stocks = this.state.portfolio.map(stockObj =>{
 

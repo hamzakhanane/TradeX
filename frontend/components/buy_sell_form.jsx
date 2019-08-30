@@ -57,9 +57,9 @@ class BuySellForm extends React.Component{
 
     componentDidUpdate(prevProps){
         const stockId = this.props.match.params.stockId;
-        debugger
+     
         if (stockId !== prevProps.match.params.stockId) {
-            debugger
+          
             this.setState({
                 totalCost: 0,
                 numShares: 0,
