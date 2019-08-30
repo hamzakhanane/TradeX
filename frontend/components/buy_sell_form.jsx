@@ -118,7 +118,6 @@ class BuySellForm extends React.Component{
                                 this.setState({ portfolio: resp.portfolio })
 
                             })
-
                         })
                     }
                 }
@@ -196,13 +195,13 @@ class BuySellForm extends React.Component{
                 }
             }
 
-            // this.setState({
-            //     totalCost: 0,
-            //     numShares: 0,
-            //     message: "",
-            //     button_text: "BUY"
+            this.setState({
+                totalCost: 0,
+                numShares: 0,
+                // message: "",
+                button_text: "BUY"
 
-            // });
+            });
 
         }
 
