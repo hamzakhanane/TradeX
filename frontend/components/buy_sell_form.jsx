@@ -1,4 +1,5 @@
 import React from "react";
+import {withRouter} from "react-router-dom";
 
 
 class BuySellForm extends React.Component{
@@ -6,7 +7,7 @@ class BuySellForm extends React.Component{
         super(props);
         this.state = {
             totalCost:0,
-            numShares:0,
+            numShares:null,
             message: "",
             button_text: "BUY",
             portfolio:{}
@@ -17,7 +18,27 @@ class BuySellForm extends React.Component{
         this.clickSell = this.clickSell.bind(this);
         this.clickBuy = this.clickBuy.bind(this);
         
+        
     }
+
+
+
+   
+
+    // componentDidUpdate(prevProps, prevState) {
+    //     debugger
+    //     // const stockId = this.props.match.params.stockId;
+    //     // if (stockId !== prevProps.match.params.stockId) {
+    //     //     this.setState({
+    //     //         totalCost: 0,
+    //     //         numShares: 0,
+    //     //         message: "",
+    //     //         button_text: "BUY",
+    //     //         portfolio: {}
+
+    //     //     });
+    //     // }
+    // }
 
 
     componentDidMount(){
@@ -27,12 +48,29 @@ class BuySellForm extends React.Component{
             this.setState({portfolio:resp.portfolio})
            
         })
+
+        this.selecButton();
+        
     
        
     }
-    // // setExistingShares(){
-    // //
-    // }
+
+    componentDidUpdate(prevProps){
+        const stockId = this.props.match.params.stockId;
+        debugger
+        if (stockId !== prevProps.match.params.stockId) {
+            debugger
+            this.setState({
+                totalCost: 0,
+                numShares: 0,
+                message: "",
+                button_text: "BUY",
+                // portfolio: {}
+
+            });
+        }
+    }
+   
 
     handleSubmit(){
        
@@ -44,7 +82,7 @@ class BuySellForm extends React.Component{
                 let trans = {};
                 let port = {};
                 let new_buying_power = currentUser.buying_power - this.state.totalCost;
-
+                
                 currentUser.buying_power = new_buying_power;
                 this.props.updateUser(currentUser);
                 port["num_stocks"] = this.state.numShares;
@@ -68,26 +106,42 @@ class BuySellForm extends React.Component{
                             found = true;
                             let new_num_share = Number(this.state.numShares) + owned_stocks[i].num_stocks
                             owned_stocks[i].num_stocks = new_num_share;
+                            
                             this.props.updatePortfolio(owned_stocks[i]);
                         }
                     }
                     if (found === false) {
-                        this.props.createPortfolio(obj2);
+                      
+                        this.props.createPortfolio(obj2).then(()=>{
+                            this.props.receivePortfolio(currentUser).then((resp) => {
+                                this.setState({ portfolio: resp.portfolio })
+
+                            })
+
+                        })
                     }
                 }
                 else if (found === false) {
-                    this.props.createPortfolio(obj2);
+                      
+                    this.props.createPortfolio(obj2).then(() => {
+                        this.props.receivePortfolio(currentUser).then((resp) => {
+                            this.setState({ portfolio: resp.portfolio })
+
+                        })
+
+                    })
                 }
                 else {
-                    this.props.createPortfolio(obj2);
-                }
-                this.setState({
-                    totalCost: 0,
-                    numShares: 0,
-                    message: "",
-                    button_text: "BUY"
+                   
+                    this.props.createPortfolio(obj2).then(() => {
+                        this.props.receivePortfolio(currentUser).then((resp) => {
+                            this.setState({ portfolio: resp.portfolio })
 
-                });
+                        })
+
+                    })
+                }
+                this.forceUpdate();
                
             }
             else {
@@ -110,10 +164,10 @@ class BuySellForm extends React.Component{
                         found = true;
                         if (Number(this.state.numShares) <= owned_stocks[i].num_stocks)
                         {
-                            debugger
+                            
                             let new_buying_power = currentUser.buying_power + this.state.totalCost;
                             currentUser.buying_power = new_buying_power;
-                            debugger
+                            
                             let new_num_share = owned_stocks[i].num_stocks - Number(this.state.numShares)
                             owned_stocks[i].num_stocks = new_num_share;
                             this.props.updatePortfolio(owned_stocks[i]);
@@ -122,7 +176,7 @@ class BuySellForm extends React.Component{
                             trans["num_stocks"] = -1 * this.state.numShares;
                             trans["currentUser"] = currentUser;
                             let obj = { "transaction": trans };
-                            debugger
+                            
                             this.props.updateUser(currentUser);
                             this.props.createTransaction(obj);
 
@@ -145,7 +199,7 @@ class BuySellForm extends React.Component{
 
         }
 
-        // this.render();
+        this.render();
 
     }
 
@@ -171,10 +225,9 @@ class BuySellForm extends React.Component{
 
     handleUpdate(type) {
         return (e) => {
-
             this.setState({ [type]: e.target.value });
             this.setState({ ["totalCost"]: Number(e.target.value) * Number(this.props.CurrentPrice)})
-
+        
         }
     }
 
@@ -185,6 +238,10 @@ class BuySellForm extends React.Component{
         this.setState({ button_text: "BUY" })
     }
 
+    selecButton(){
+        let buy = document.getElementById("buy").focus();
+       
+    }
 
 
     render(){
@@ -209,23 +266,23 @@ class BuySellForm extends React.Component{
 
         }
 
-      
+        
         return (
-
+            
         <div className="form-container">
             <div className="form-heading">
-                    <button onClick={this.clickBuy}>Buy {StockName}</button>
-                 <button onClick={this.clickSell}>Sell {StockName}</button>
+                    <button id="buy" className="buy-button" onClick={this.clickBuy}>Buy {StockName}</button>
+                 <button className="sell-button" onClick={this.clickSell}>Sell {StockName}</button>
             </div>
            <div className="share-price-container">
                 <div className="share-input-container">
                 <label>Shares</label>
                 
-                <input className="share-input" type="text" value={this.state.numShares} onChange={this.handleUpdate("numShares")} />
+                <input className="share-input" type="text" value={this.state.numShares} onChange={this.handleUpdate("numShares")} placeholder="0" />
                 </div>
 
                 <div className="market-price">
-                    <span>Market Price</span>
+                    <span className="market-price-text">Market Price</span>
                     <span>${CurrentPrice}</span>
                 </div>
             </div>
@@ -236,19 +293,24 @@ class BuySellForm extends React.Component{
                         <span>${totalCost.toFixed(2)}</span>
 
                     </div>
-                    <div>
-                        <span>you own {existing_shares} shares</span>
-                    </div>
-                    <div>
-                        <span>your current buying power is {currentUser.buying_power.toFixed(2)}</span>
-                    </div>
-                    <div>
-                        <span>{this.state.message}</span>
-                    </div>
 
                     <div className="review-button-container">
                         <button onClick={this.handleSubmit} className="review-button">{this.state.button_text}</button>
                     </div>
+
+                    <div className="buying-power-container">
+                        <span>{currentUser.buying_power.toFixed(2)} Buying Power Available</span>
+                    </div>
+
+                    <div className="existing-share-container">
+                        <span className="shares-text">You Own {existing_shares} shares</span>
+                    </div>
+                  
+                    <div>
+                        <span>{this.state.message}</span>
+                    </div>
+
+                    
                    
                    
             </div>
@@ -262,4 +324,5 @@ class BuySellForm extends React.Component{
 
     }
 }
-export default BuySellForm;
+
+export default withRouter(BuySellForm);
