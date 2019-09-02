@@ -1,6 +1,8 @@
 import * as StockInfoApi from '../util/stock_info_api_util';
 import * as PortfolioApi from '../util/portfolio_api_util';
 
+import * as WatchListApi from '../util/watchlist_api_util';
+
 export const RECEIVE_STOCK_INFO = "RECEIVE_STOCK_INFO";
 export const RECEIVE_STOCK = "RECEIVE_STOCK";
 export const RECEIVE_ALL_STOCKS = "RECEIVE_ALL_STOCKS";
@@ -8,6 +10,9 @@ export const CREATE_TRANSACTION = "CREATE_TRANSACTION";
 export const CREATE_PORTFOLIO = "CREATE_PORTFOLIO";
 export const UPDATE_PORTFOLIO = "UPDATE_PORTFOLIO";
 export const GET_PORTFOLIO = "GET_PORTFOLIO";
+export const GET_WATCHLIST = "GET_WATCHLIST";
+export const CREATE_WATCHLIST = "CREATE_WATCHLIST";
+export const DELETE_WATCHLIST = "DELETE_WATCHLIST";
 
 
 
@@ -17,6 +22,28 @@ const recieveTransaction = (transaction)=>{
         type: CREATE_TRANSACTION,
         transaction
 
+    })
+}
+
+const getWatchList = (watchlist) =>{
+    return({
+        type: GET_WATCHLIST,
+        watchlist
+    })
+}
+
+const removeWatchList = (watchlist) =>{
+    return({
+        type: DELETE_WATCHLIST,
+        watchlist
+    })
+}
+
+const receiveWatchList = (watchlist) => {
+    debugger
+    return({
+        type: CREATE_WATCHLIST,
+        watchlist
     })
 }
 
@@ -60,6 +87,25 @@ const receiveStock = (stock)=>{
         stock
     })
 }
+
+export const receiveAllWatchLists = (user) => (dispatch) =>{
+    WatchListApi.getWatchList(user).then(watchlist=>(
+        dispatch(getWatchList(watchlist))
+    ))
+
+}
+
+export const deleteWatchList = watchlist => dispatch => (
+    WatchListApi.deleteWatchList(watchlist).then(watchlist => (
+        dispatch(removeWatchList(watchlist))
+    ))
+);
+
+export const createWatchList = (payload) => dispatch =>(
+    WatchListApi.createWatchList(payload).then(watchlist=>(
+        dispatch(receiveWatchList(watchlist))
+    ))
+);
 
 export const receivePort = (user) => dispatch =>(
     PortfolioApi.GetPortfolio(user).then(portfolio =>(

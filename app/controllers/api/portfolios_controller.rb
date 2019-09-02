@@ -44,6 +44,7 @@ class Api::PortfoliosController < ApplicationController
     private
 
     def portfolio_params
+        debugger
         params.require(:portfolio).permit(:stock_id, :num_stocks)
     end
 end

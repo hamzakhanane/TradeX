@@ -6,6 +6,7 @@ import Root from './components/root';
 import {fetchStockInfo,fetchAllStocks,receivePort} from "./actions/stock_info_actions"
 import {fetchInfo,fetchCharts,fetchNews} from "./util/stock_info_api_util"
 import {GetPortfolio} from "./util/portfolio_api_util";
+import {createWatchList,deleteWatchList} from "./util/watchlist_api_util";
 
 document.addEventListener('DOMContentLoaded', () => {
     // const store = configureStore();
@@ -35,6 +36,7 @@ document.addEventListener('DOMContentLoaded', () => {
     window.fetchAllStocks = fetchAllStocks;
     window.fetchNews = fetchNews;
     window.GetPortfolio = GetPortfolio;
+    window.createWatchList = createWatchList;
    
 
 

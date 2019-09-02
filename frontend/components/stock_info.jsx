@@ -7,6 +7,7 @@ import { Link } from 'react-router-dom';
 import { SearchContainer } from "./search_container";
 import { LineChart, Line, CartesianGrid, XAxis, YAxis, Tooltip } from 'recharts';
 
+
 import {createTransaction} from "../actions/stock_info_actions";
 
 class StockInfo extends React.Component{
@@ -27,7 +28,8 @@ class StockInfo extends React.Component{
             "3M": [],
             "1Y": [],
         },
-        news:{}
+        news:{},
+        watchlist_message: "Add To WatchList"
     };
         this.oneDay = this.oneDay.bind(this);
         this.oneMonth = this.oneMonth.bind(this);
@@ -35,6 +37,7 @@ class StockInfo extends React.Component{
         this.oneYear = this.oneYear.bind(this);
         this.threeMonths = this.threeMonths.bind(this);
         this.handleLogout = this.handleLogout.bind(this);
+        this.updateWatchList = this.updateWatchList.bind(this);
       
         
         // this.CustomTooltip = this.CustomTooltip.bind(this);
@@ -46,6 +49,18 @@ class StockInfo extends React.Component{
         this.props.logout(this.props.currentUser)
 
        
+    }
+
+    updateWatchList(){
+        if (this.state.watchlist_message === "Add To WatchList"){
+            let watchlist ={};
+            watchlist["currentUser"] =this.props.currentUser;
+            watchlist["stock_id"] = this.props.stock.id;
+            let obj = {};
+            obj["watchlist"]= watchlist;
+            debugger
+            this.props.createWatchList(obj);
+        }
     }
 
 
@@ -466,6 +481,12 @@ class StockInfo extends React.Component{
                     <div className="form-box">
                         <BuySellForm className="form-container" currentUser={this.props.currentUser} StockObject={this.props.stock} StockName={stockinfo.symbol} CurrentPrice={qoute.latestPrice} createTransaction ={this.props.createTransaction} updateUser = {this.props.update} 
                         createPortfolio={this.props.createPortfolio} receivePortfolio={this.props.receivePortfolio} updatePortfolio={this.props.updatePortfolio}/>
+                    </div>
+                </div>
+
+                <div>
+                    <div>
+                        <button onClick={this.updateWatchList}>{this.state.watchlist_message}</button>
                     </div>
                 </div>
             </div> 
