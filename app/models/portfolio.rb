@@ -23,9 +23,7 @@ class Portfolio < ApplicationRecord
         class_name: "Stock"
     
     def self.get_num_stock(userId)
-        
         arr = Portfolio.all.where(user_id: userId.to_i)
-     
         return arr
     end
 

@@ -17,7 +17,7 @@ const mapDispatchToProps = dispatch => ({
     receivePortfolio: (currentUser) => dispatch(receivePort(currentUser)),
     fetchStock: (id) => dispatch(fetchStock(id)),
     receiveAllWatchLists: (currentUser) => dispatch(receiveAllWatchLists(currentUser))
-});
+})
 
 
 export const DashBoardContainer =  connect(

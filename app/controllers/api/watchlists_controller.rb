@@ -5,9 +5,14 @@ class Api::WatchlistsController < ApplicationController
         render :show 
     end
 
+    def index
+      @watchlists = WatchList.get_user_watch_list(params[:user_id])
+      
+      render :index
+    end
+
 
    def create
-      debugger
       @watch_list = WatchList.new(watch_list_params)
       @watch_list.user_id = current_user.id
       if @watch_list.save
@@ -32,11 +37,18 @@ class Api::WatchlistsController < ApplicationController
       end 
     end 
 
+    def destroy 
+    @watch_list = WatchList.find(params[:id])
+    @watch_list.destroy
+    render :index
+    end
+
+
 
 
     private
     def watch_list_params
-      debugger
+
       params.require(:watchlist).permit(:stock_id)
     end
 

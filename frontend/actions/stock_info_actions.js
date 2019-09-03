@@ -26,6 +26,8 @@ const recieveTransaction = (transaction)=>{
 }
 
 const getWatchList = (watchlist) =>{
+    debugger
+    
     return({
         type: GET_WATCHLIST,
         watchlist
@@ -40,7 +42,6 @@ const removeWatchList = (watchlist) =>{
 }
 
 const receiveWatchList = (watchlist) => {
-    debugger
     return({
         type: CREATE_WATCHLIST,
         watchlist
@@ -88,12 +89,11 @@ const receiveStock = (stock)=>{
     })
 }
 
-export const receiveAllWatchLists = (user) => (dispatch) =>{
+export const receiveAllWatchLists = (user) => (dispatch) =>(
     WatchListApi.getWatchList(user).then(watchlist=>(
         dispatch(getWatchList(watchlist))
     ))
-
-}
+)
 
 export const deleteWatchList = watchlist => dispatch => (
     WatchListApi.deleteWatchList(watchlist).then(watchlist => (

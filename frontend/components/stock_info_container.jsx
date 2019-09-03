@@ -1,6 +1,6 @@
 import React from "react";
 import { connect } from "react-redux";
-import {fetchStockInfo,fetchStock,createTransaction, createPortfolio, receivePort,updatePort, createWatchList, deleteWatchList} from "../actions/stock_info_actions";
+import {fetchStockInfo,fetchStock,createTransaction, createPortfolio, receivePort,updatePort, createWatchList, deleteWatchList,receiveAllWatchLists} from "../actions/stock_info_actions";
 import StockInfo from "../components/stock_info"; 
 import { logout, update} from "../actions/sessions_actions";
 
@@ -13,6 +13,7 @@ const mapStateToProps = (state, ownProps)=>{
     let user = state.entities.users[state.session.id];
    
     return({
+        watchlist: stocks.watchlist,
         stock: stocks[stockId],
         currentUser: user
     });
@@ -30,6 +31,7 @@ const mapDispatchToProps = (dispatch)=>{
         receivePortfolio: (portfolio) => dispatch(receivePort(portfolio)),
         updatePortfolio: (portfolio) => dispatch(updatePort(portfolio)),
         createWatchList: (watchlist) => dispatch(createWatchList(watchlist)),
+        receiveAllWatchLists: (userId) => dispatch(receiveAllWatchLists(userId)),
         deleteWatchList: (watchlist) => dispatch(deleteWatchList(watchlist))
         
 

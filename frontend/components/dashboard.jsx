@@ -18,9 +18,9 @@ class DashBoard extends React.Component{
 
     componentDidMount(){
         let {currentUser} = this.props;
+
         this.props.receivePortfolio(currentUser).then((resp) => {
             let arr = Object.values(resp.portfolio);
-            
             for(let i =0; i<arr.length; i++){
                 if(arr[i].num_stocks>0){
                    

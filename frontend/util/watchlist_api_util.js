@@ -8,17 +8,18 @@ export const createWatchList = (payload) => {
 
 
 
-export const deleteWatchList = (wachlist) => {
+export const deleteWatchList = (payload) => {
+    debugger
     return $.ajax({
         method: "DELETE",
-        url: `/api/users/${wachlist.user_id}/watchlists/${portfolio.id}`,
+        url: `/api/users/${payload.watchlist.user_id}/watchlists/${payload.watchlist.watchlist_id}`,
     })
 }
 
 export const getWatchList = (payload)=>{
     return $.ajax({
         method: "GET",
-        url: `/api/users/${payload.id}/watchlists`,
+        url: `/api/users/${payload}/watchlists`,
         data: payload
     })
 }

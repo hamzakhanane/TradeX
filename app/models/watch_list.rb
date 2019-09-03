@@ -23,6 +23,10 @@ class WatchList < ApplicationRecord
         foreign_key: :stock_id,
         class_name: "Stock"
     
+    def self.get_user_watch_list(userId)
+        arr = WatchList.all.where(user_id: userId.to_i)
+        return arr
+    end
 
 
 end
