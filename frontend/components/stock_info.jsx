@@ -44,13 +44,14 @@ class StockInfo extends React.Component{
    
     }
     changeButtonMessage(){
-        debugger
+      
         const watchlist_obj = this.props.watchlist;
         if (typeof watchlist_obj !== 'undefined') {
             let arr = Object.values(watchlist_obj);
             for (let i = 0; i < arr.length; i++) {
                 if (Number(this.props.match.params.stockId) === Number(arr[i].stock_id)) {
                     this.setState({ watchlist_message: "Remove From WatchList" });
+                    break;
                 }
             }
         }
@@ -72,10 +73,12 @@ class StockInfo extends React.Component{
             watchlist["stock_id"] = this.props.stock.id;
             let obj = {};
             obj["watchlist"]= watchlist;
+            // this.setState({ watchlist_message: "Remove From WatchList" });
+            this.props.createWatchList(obj).then((resp)=>{
+               
+            })
             this.setState({ watchlist_message: "Remove From WatchList" });
-            this.props.createWatchList(obj);
 
-           
         }
         else{
             const watchlist_obj = this.props.watchlist;
@@ -87,9 +90,12 @@ class StockInfo extends React.Component{
                     obj["user_id"] = arr[i].user_id;
                     let payload ={};
                     payload["watchlist"]= obj;
+                    // this.setState({ watchlist_message: "Add To WatchList" });
+                    this.props.deleteWatchList(payload).then((resp)=>{
+                       
+                    })
                     this.setState({ watchlist_message: "Add To WatchList" });
-                
-                    this.props.deleteWatchList(payload);
+                    break;
                 }
             }
 
@@ -526,13 +532,17 @@ class StockInfo extends React.Component{
                         <BuySellForm className="form-container" currentUser={this.props.currentUser} StockObject={this.props.stock} StockName={stockinfo.symbol} CurrentPrice={qoute.latestPrice} createTransaction ={this.props.createTransaction} updateUser = {this.props.update} 
                         createPortfolio={this.props.createPortfolio} receivePortfolio={this.props.receivePortfolio} updatePortfolio={this.props.updatePortfolio}/>
                     </div>
-                </div>
 
-                <div>
-                    <div>
-                        <button onClick={this.updateWatchList}>{this.state.watchlist_message}</button>
+                    <div className="watchlist-button-container">
+                        <button className="watchlist-button" onClick={this.updateWatchList}>{this.state.watchlist_message}</button>
                     </div>
                 </div>
+
+                {/* <div>
+                    <div>
+                        <button className="watchlist-button" onClick={this.updateWatchList}>{this.state.watchlist_message}</button>
+                    </div>
+                </div> */}
             </div> 
 
                 

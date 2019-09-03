@@ -9,7 +9,7 @@ export const createWatchList = (payload) => {
 
 
 export const deleteWatchList = (payload) => {
-    debugger
+    
     return $.ajax({
         method: "DELETE",
         url: `/api/users/${payload.watchlist.user_id}/watchlists/${payload.watchlist.watchlist_id}`,

@@ -57,7 +57,7 @@ class DashBoard extends React.Component{
                         obj["currentPrice"] = resp.latestPrice;
                         let temp_arr = this.state.watchlists;
                         let temp_arr2 = temp_arr.concat(obj);
-                        debugger
+                      
                         this.setState({ watchlists: temp_arr2 })
                     });
                 })
@@ -145,7 +145,7 @@ class DashBoard extends React.Component{
                                         <ul>{bought_stocks}</ul>
                                     </div>
 
-                                    <div className="portfolio-heading">
+                                    <div className="portfolio-heading-2">
                                         <span className="stock-span">WatchList</span>
                                     </div>
 
@@ -153,7 +153,7 @@ class DashBoard extends React.Component{
                                         <ul>{stocks_watchlist}</ul>
                                     </div>
 
-                                    
+                
                                 </div>
                                 
                             </div>

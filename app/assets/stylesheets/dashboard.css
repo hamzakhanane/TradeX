@@ -108,6 +108,17 @@
     align-items: center;
     
 }
+.portfolio-heading-2{
+    border-top: 1px solid;
+    border-bottom: 1px solid;
+    border-color: lightgray;
+    height: 30px;
+    margin: 0 -24px;
+    padding: 12px 24px 0;
+    margin-bottom: 5%;
+    align-items: center;
+    
+}
 .stock-element{
    display: flex;
    margin-bottom: 5%;
@@ -135,5 +146,7 @@
 .stock-span{
     font-weight: 600;
 }
+
+
 
 
