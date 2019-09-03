@@ -8,7 +8,8 @@ class DashBoard extends React.Component{
         super(props);
         this.handleLogout = this.handleLogout.bind(this);
         this.state = {
-            portfolio:[]
+            portfolio:[],
+            watchlists: []
         }
     }
 
@@ -43,9 +44,30 @@ class DashBoard extends React.Component{
                 }
             }
 
+        });
+        this.props.receiveAllWatchLists(currentUser.id).then((resp)=>{
+            let arr = Object.values(resp.watchlist);
+            for(let i=0; i<arr.length; i++){
+                let obj = {};
+                obj["stock_id"] = arr[i].stock_id;
+                this.props.fetchStock(arr[i].stock_id).then((resp) => {
+                    obj["ticker"] = resp.stock.ticker;
+                    fetchQoutes(resp.stock.ticker).then((resp) => {
+
+                        obj["currentPrice"] = resp.latestPrice;
+                        let temp_arr = this.state.watchlists;
+                        let temp_arr2 = temp_arr.concat(obj);
+                        debugger
+                        this.setState({ watchlists: temp_arr2 })
+                    });
+                })
+
+            }
             
 
         })
+
+      
 
        
        
@@ -73,6 +95,21 @@ class DashBoard extends React.Component{
             );
 
         });
+
+        let stocks_watchlist = this.state.watchlists.map(stockObj=>{
+            return(
+                <Link className="link-to-stock" to={`/stock/${stockObj.stock_id}`}>
+
+                    <li className="stock-element">
+                        <div className="currentPrice-ticker-container">
+                            <span className="stock-ticker">{stockObj.ticker}</span>
+                            <span className="price">${stockObj.currentPrice}</span>
+                        </div>
+                    </li>
+                </Link>
+
+            );
+        })
         
         
             return (
@@ -107,6 +144,15 @@ class DashBoard extends React.Component{
                                     <div className="stock-list">
                                         <ul>{bought_stocks}</ul>
                                     </div>
+
+                                    <div className="portfolio-heading">
+                                        <span className="stock-span">WatchList</span>
+                                    </div>
+
+                                    <div className="stock-list">
+                                        <ul>{stocks_watchlist}</ul>
+                                    </div>
+
                                     
                                 </div>
                                 

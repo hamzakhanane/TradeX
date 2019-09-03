@@ -13,7 +13,6 @@ export const StockInfoReducer = (state = {}, action) => {
         case RECEIVE_STOCK:
             return Object.assign({},state,{[action.stock.id]:action.stock})
         case GET_WATCHLIST:
-            debugger
             return Object.assign({},state,{["watchlist"]:action.watchlist})
        
         case GET_PORTFOLIO:

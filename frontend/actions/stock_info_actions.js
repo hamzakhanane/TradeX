@@ -26,7 +26,7 @@ const recieveTransaction = (transaction)=>{
 }
 
 const getWatchList = (watchlist) =>{
-    debugger
+    
     
     return({
         type: GET_WATCHLIST,
