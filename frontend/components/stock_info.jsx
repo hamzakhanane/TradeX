@@ -241,12 +241,12 @@ class StockInfo extends React.Component{
             //             newData["1D"] = this.structureData(charts);
             //             this.setState({charts: newData})
             //         });
-            fetchCharts(ticker, "1M")
-                .then(charts => {
-                    const newData = Object.assign({}, this.state.charts);
-                    newData["1M"] = this.structureData(charts);
-                    this.setState({ charts: newData })
-                });
+            // fetchCharts(ticker, "1M")
+            //     .then(charts => {
+            //         const newData = Object.assign({}, this.state.charts);
+            //         newData["1M"] = this.structureData(charts);
+            //         this.setState({ charts: newData })
+            //     });
             // fetchCharts(ticker, "1Y")
             //     .then(charts => {
             //         const newData = Object.assign({}, this.state.charts);
@@ -374,7 +374,7 @@ class StockInfo extends React.Component{
         
         let len = news.length;
         let arr_news=[]
-        debugger
+        
         if(news.length>1){
             if (news.length > 5){
                 len = 4;

@@ -22,34 +22,6 @@ class DashBoard extends React.Component{
         this.props.logout(this.props.currentUser)
     }
 
-    // refactorDateTime(trans){
-    //     for (let i = 0; i < trans.length; i++) {
-    //         const refactored_time = new Date(trans[i].created_at);
-    //         trans[i].created_at = refactored_time;
-    //     }
-
-    //     return trans;
-
-    // }
-
-    // getDayData(trans){
-    //     let current_day = {};
-    //     var d = new Date()
-    //     for(let i=0; i<trans.length; i++){
-            
-    //         if ((d.getDay() === trans[i].created_at.getDay()) && (d.getMonth() === trans[i].created_at.getMonth())){
-                
-    //             current_day[i] = trans[i];
-    //         }
-    //     }
-
-    //     return current_day;
-        
-       
-    // }
-
-
-
     componentDidMount(){
         let total = 0;
         let {currentUser} = this.props;
@@ -69,12 +41,10 @@ class DashBoard extends React.Component{
                 for(let i=0; i<arr.length; i++){
                     for(let j=0; j<arr[i].news.length; j++){
                         result_news.push(arr[i].news[j]);
-                        debugger
+            
                     }
-                 
-          
+            
                 }
-                
                 this.setState({ news: result_news })
             });
 
@@ -102,19 +72,17 @@ class DashBoard extends React.Component{
             } 
            
         });
+
         // let today = new Date();
-        // if (today.getHours() >= 17) {
+        // if (today.getHours() >= 17 && (today.getDay() !== 5 || today.getDay())) {
         //     this.props.getRecords(currentUser).then((resp) => {
-
-        //         debugger
         //         let arr = Object.values(resp.records);
-        //         let day_range = arr.length - 7;
-        //         let day_data = [];
-        //         for (let i = arr.length - 1; i > day_range - 1; i--) {
-        //             day_data.push(arr[i]);
+        //         let last_date = new Date(arr[arr.length-1].created_at);
+        //         if(last_date.getDay()!==today.getDay){
+
+                    
         //         }
-
-
+               
         //     })
 
         // }
@@ -172,7 +140,7 @@ class DashBoard extends React.Component{
         let len = news.length;
         let arr_news = []
         if (news.length > 1) {
-            debugger
+          
             // if (news.length > 5) {
             //     len = 4;
 
@@ -199,7 +167,7 @@ class DashBoard extends React.Component{
         }
 
         // if(this.state.current_value !== 0 && this.state.one_week.length !== 0){
-        //     debugger
+        //     
         //     current_change = this.state.current_value - this.state.week_data[this.state.week_data.length - 1].current_port_value;
         //     current_percent_change = (this.state.current_value - this.state.week_data[this.state.week_data.length - 1].current_port_value) / 100;
         // }

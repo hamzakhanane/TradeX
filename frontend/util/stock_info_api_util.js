@@ -53,7 +53,7 @@ export const createTransaction = (payload) => {
 }
 
 export const fetchDashBoardNews=(tickers)=>{
-    debugger
+   
     return $.ajax({
         url: `https://cloud.iexapis.com/stable/stock/market/batch?symbols=${tickers}&types=news&last=2&token=${window.iexAPIKeySecret}`,
         method: ""
