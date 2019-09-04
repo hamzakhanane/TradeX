@@ -2,14 +2,13 @@
 #
 # Table name: transactions
 #
-#  id                      :bigint           not null, primary key
-#  user_id                 :integer          not null
-#  stock_id                :integer          not null
-#  num_stocks              :float            not null
-#  total_cost              :float            not null
-#  created_at              :datetime         not null
-#  updated_at              :datetime         not null
-#  current_portfolio_value :integer
+#  id         :bigint           not null, primary key
+#  user_id    :integer          not null
+#  stock_id   :integer          not null
+#  num_stocks :float            not null
+#  total_cost :float            not null
+#  created_at :datetime         not null
+#  updated_at :datetime         not null
 #
 
 class Transaction < ApplicationRecord

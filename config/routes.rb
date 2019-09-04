@@ -7,6 +7,8 @@ Rails.application.routes.draw do
       resources :watchlists, only: [:show, :create, :update, :destroy, :index]
       resources :portfolios, only: [:show, :create, :update, :destroy, :index]
       resources :transactions, only: [:show, :create, :update, :destroy, :index]
+      resources :portfoliorecords, only: [:show, :create, :index]
+      
     end
     resource :session, only: [:create, :destroy]
     resources :stocks, only: [:index, :show] do
