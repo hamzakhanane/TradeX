@@ -16,6 +16,13 @@ class Api::TransactionsController < ApplicationController
         end
     end
 
+     def index
+        @transactions = Transaction.get_user_transactions(params[:user_id])
+        render :index
+    end
+
+
+
     
 
     private

@@ -9,7 +9,8 @@ class DashBoard extends React.Component{
         this.handleLogout = this.handleLogout.bind(this);
         this.state = {
             portfolio:[],
-            watchlists: []
+            watchlists: [],
+            current_value: 0
         }
     }
 
@@ -17,8 +18,45 @@ class DashBoard extends React.Component{
         this.props.logout(this.props.currentUser)
     }
 
+    refactorDateTime(trans){
+        for (let i = 0; i < trans.length; i++) {
+            const refactored_time = new Date(trans[i].created_at);
+            trans[i].created_at = refactored_time;
+        }
+
+        return trans;
+
+    }
+
+    getDayData(trans){
+        let current_day = {};
+        var d = new Date()
+        for(let i=0; i<trans.length; i++){
+            
+            if ((d.getDay() === trans[i].created_at.getDay()) && (d.getMonth() === trans[i].created_at.getMonth())){
+                
+                current_day[i] = trans[i];
+            }
+        }
+
+        return current_day;
+        
+       
+    }
+
+
+
     componentDidMount(){
+        let total = 0;
         let {currentUser} = this.props;
+       
+        total += currentUser.buying_power;
+        this.props.getTransactions(currentUser.id).then((resp)=>{
+            
+            let trans = this.refactorDateTime(Object.values(resp.transaction));
+            let currentDay= this.getDayData(trans);
+            debugger
+        })
 
         this.props.receivePortfolio(currentUser).then((resp) => {
             let arr = Object.values(resp.portfolio);
@@ -32,19 +70,26 @@ class DashBoard extends React.Component{
                         obj["ticker"] = resp.stock.ticker;
                         fetchQoutes(resp.stock.ticker).then((resp)=>{
                            
+                            
                             obj["currentPrice"]=resp.latestPrice;
+                            total += resp.latestPrice * arr[i].num_stocks;
+                            this.setState({ current_value: total });
                             let temp_arr = this.state.portfolio;
                             let temp_arr2 = temp_arr.concat(obj);
                             this.setState({ portfolio: temp_arr2 })
                         });
                         
-                        
+                      
                     })
                     
                 }
             }
+            // this.setState({ current_value: total });
+           
+           
 
         });
+    
         this.props.receiveAllWatchLists(currentUser.id).then((resp)=>{
             let arr = Object.values(resp.watchlist);
             for(let i=0; i<arr.length; i++){
@@ -131,7 +176,8 @@ class DashBoard extends React.Component{
                     <div className="graph-portfolio-container">
                         <div className="graph-user">
                             <div>
-                                <span>Graph</span> 
+                                {/* <span>Graph</span>  */}
+                                <span>${this.state.current_value.toFixed(3)}</span>
                             </div>
                         </div>
                         <div className="sidebar-container">

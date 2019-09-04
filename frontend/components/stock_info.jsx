@@ -436,7 +436,6 @@ class StockInfo extends React.Component{
                     </div>
                     <div>
 
-                    
                         <Chart className="chart" data={data} openingPrice={qoute.latestPrice} 
                         change={qoute.change} percent_change={qoute.changePercent} />
                     </div>

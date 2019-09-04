@@ -1,6 +1,6 @@
 import * as StockInfoApi from '../util/stock_info_api_util';
 import * as PortfolioApi from '../util/portfolio_api_util';
-
+import * as TransactionApi from '../util/transaction_api_util';
 import * as WatchListApi from '../util/watchlist_api_util';
 
 export const RECEIVE_STOCK_INFO = "RECEIVE_STOCK_INFO";
@@ -13,6 +13,7 @@ export const GET_PORTFOLIO = "GET_PORTFOLIO";
 export const GET_WATCHLIST = "GET_WATCHLIST";
 export const CREATE_WATCHLIST = "CREATE_WATCHLIST";
 export const DELETE_WATCHLIST = "DELETE_WATCHLIST";
+export const GET_ALL_TRANSACTIONS = "GET_ALL_TRANSACTIONS";
 
 
 
@@ -23,6 +24,14 @@ const recieveTransaction = (transaction)=>{
         transaction
 
     })
+}
+
+const receiveAllTransactions = (transaction)=>{
+    return({
+        type: GET_ALL_TRANSACTIONS,
+        transaction
+    })
+
 }
 
 const getWatchList = (watchlist) =>{
@@ -130,6 +139,12 @@ export const updatePort = portfolio => dispatch => (
 export const createTransaction = (payload) => dispatch =>(
     StockInfoApi.createTransaction(payload).then(transaction=>(
         dispatch(recieveTransaction(transaction))
+    ))
+);
+
+export const GetTransactions = (userId) => dispatch =>(
+    TransactionApi.GetTransactions(userId).then(transactions=>(
+        dispatch(receiveAllTransactions(transactions))
     ))
 );
 
