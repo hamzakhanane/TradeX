@@ -5,6 +5,7 @@ export const fetchStock = (id) => {
     });
 };
 
+
 export const fetchAllStocks = (query) =>{
     return $.ajax({
         method: "GET",
@@ -50,4 +51,16 @@ export const createTransaction = (payload) => {
         data: payload 
     });
 }
+
+export const fetchDashBoardNews=(tickers)=>{
+    debugger
+    return $.ajax({
+        url: `https://cloud.iexapis.com/stable/stock/market/batch?symbols=${tickers}&types=news&last=2&token=${window.iexAPIKeySecret}`,
+        method: ""
+
+    }
+       
+    )
+}
+
 

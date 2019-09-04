@@ -2,6 +2,7 @@ import * as StockInfoApi from '../util/stock_info_api_util';
 import * as PortfolioApi from '../util/portfolio_api_util';
 import * as TransactionApi from '../util/transaction_api_util';
 import * as WatchListApi from '../util/watchlist_api_util';
+import * as RecordApi from '../util/portfolio_record_api_util';
 
 export const RECEIVE_STOCK_INFO = "RECEIVE_STOCK_INFO";
 export const RECEIVE_STOCK = "RECEIVE_STOCK";
@@ -14,6 +15,8 @@ export const GET_WATCHLIST = "GET_WATCHLIST";
 export const CREATE_WATCHLIST = "CREATE_WATCHLIST";
 export const DELETE_WATCHLIST = "DELETE_WATCHLIST";
 export const GET_ALL_TRANSACTIONS = "GET_ALL_TRANSACTIONS";
+export const CREATE_PORTFOLIO_RECORD = "CREATE_PORTFOLIO_RECORD";
+export const GET_PORTFOLIO_RECORDS = "GET_PORTFOLIO_RECORDS";
 
 
 
@@ -23,6 +26,20 @@ const recieveTransaction = (transaction)=>{
         type: CREATE_TRANSACTION,
         transaction
 
+    })
+}
+
+const receiveAllPortfolioRecords = (records)=>{
+    return({
+        type: GET_PORTFOLIO_RECORDS,
+        records
+    })
+}
+
+const getPortfolioRecord = (record) =>{
+    return({
+        type: CREATE_PORTFOLIO_RECORD,
+        record
     })
 }
 
@@ -104,6 +121,8 @@ export const receiveAllWatchLists = (user) => (dispatch) =>(
     ))
 )
 
+
+
 export const deleteWatchList = watchlist => dispatch => (
     WatchListApi.deleteWatchList(watchlist).then(watchlist => (
         dispatch(removeWatchList(watchlist))
@@ -145,6 +164,19 @@ export const createTransaction = (payload) => dispatch =>(
 export const GetTransactions = (userId) => dispatch =>(
     TransactionApi.GetTransactions(userId).then(transactions=>(
         dispatch(receiveAllTransactions(transactions))
+    ))
+);
+
+export const GetRecords = (userId) => dispatch =>(
+    RecordApi.GetPortfolioRecords(userId).then(records=>(
+        dispatch(receiveAllPortfolioRecords(records))
+    ))
+
+);
+
+export const CreateRecord = (payload) => dispatch=>(
+    RecordApi.createPortfolioRecord(payload).then(record=>(
+        dispatch(getPortfolioRecord(record))
     ))
 );
 

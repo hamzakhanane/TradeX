@@ -2,6 +2,8 @@ import React from "react";
 import { Link } from 'react-router-dom';
 import {SearchContainer} from "./search_container";
 import {fetchQoutes} from "../util/stock_info_api_util";
+import {DashboardChart} from "../components/dashboard-chart";
+import {fetchDashBoardNews} from "../util/stock_info_api_util";
 class DashBoard extends React.Component{
 
     constructor(props){
@@ -10,7 +12,9 @@ class DashBoard extends React.Component{
         this.state = {
             portfolio:[],
             watchlists: [],
-            current_value: 0
+            current_value: 0,
+            one_week:[],
+            news: {}
         }
     }
 
@@ -18,31 +22,31 @@ class DashBoard extends React.Component{
         this.props.logout(this.props.currentUser)
     }
 
-    refactorDateTime(trans){
-        for (let i = 0; i < trans.length; i++) {
-            const refactored_time = new Date(trans[i].created_at);
-            trans[i].created_at = refactored_time;
-        }
+    // refactorDateTime(trans){
+    //     for (let i = 0; i < trans.length; i++) {
+    //         const refactored_time = new Date(trans[i].created_at);
+    //         trans[i].created_at = refactored_time;
+    //     }
 
-        return trans;
+    //     return trans;
 
-    }
+    // }
 
-    getDayData(trans){
-        let current_day = {};
-        var d = new Date()
-        for(let i=0; i<trans.length; i++){
+    // getDayData(trans){
+    //     let current_day = {};
+    //     var d = new Date()
+    //     for(let i=0; i<trans.length; i++){
             
-            if ((d.getDay() === trans[i].created_at.getDay()) && (d.getMonth() === trans[i].created_at.getMonth())){
+    //         if ((d.getDay() === trans[i].created_at.getDay()) && (d.getMonth() === trans[i].created_at.getMonth())){
                 
-                current_day[i] = trans[i];
-            }
-        }
+    //             current_day[i] = trans[i];
+    //         }
+    //     }
 
-        return current_day;
+    //     return current_day;
         
        
-    }
+    // }
 
 
 
@@ -51,12 +55,28 @@ class DashBoard extends React.Component{
         let {currentUser} = this.props;
        
         total += currentUser.buying_power;
-        this.props.getTransactions(currentUser.id).then((resp)=>{
+        // this.props.getTransactions(currentUser.id).then((resp)=>{
             
-            let trans = this.refactorDateTime(Object.values(resp.transaction));
-            let currentDay= this.getDayData(trans);
+        //     let trans = this.refactorDateTime(Object.values(resp.transaction));
+        //     let currentDay= this.getDayData(trans);
             
-        })
+        // })
+        fetchDashBoardNews("aapl,msft,googl")
+            .then((news) => {
+         
+                let arr = Object.values(news);
+                let result_news = [];
+                for(let i=0; i<arr.length; i++){
+                    for(let j=0; j<arr[i].news.length; j++){
+                        result_news.push(arr[i].news[j]);
+                        debugger
+                    }
+                 
+          
+                }
+                
+                this.setState({ news: result_news })
+            });
 
         this.props.receivePortfolio(currentUser).then((resp) => {
             let arr = Object.values(resp.portfolio);
@@ -70,25 +90,50 @@ class DashBoard extends React.Component{
                         obj["ticker"] = resp.stock.ticker;
                         fetchQoutes(resp.stock.ticker).then((resp)=>{
                            
-                            
                             obj["currentPrice"]=resp.latestPrice;
                             total += resp.latestPrice * arr[i].num_stocks;
-                            this.setState({ current_value: total });
+                            this.setState({ current_value: total.toFixed(0) });
                             let temp_arr = this.state.portfolio;
                             let temp_arr2 = temp_arr.concat(obj);
                             this.setState({ portfolio: temp_arr2 })
                         });
-                        
-                      
-                    })
-                    
+                    })   
                 }
-            }
-            // this.setState({ current_value: total });
+            } 
            
-           
-
         });
+        // let today = new Date();
+        // if (today.getHours() >= 17) {
+        //     this.props.getRecords(currentUser).then((resp) => {
+
+        //         debugger
+        //         let arr = Object.values(resp.records);
+        //         let day_range = arr.length - 7;
+        //         let day_data = [];
+        //         for (let i = arr.length - 1; i > day_range - 1; i--) {
+        //             day_data.push(arr[i]);
+        //         }
+
+
+        //     })
+
+        // }
+        this.props.getRecords(currentUser).then((resp)=>{
+            
+            let arr = Object.values(resp.records);
+            let week_range = arr.length - 6;
+            let week_data = [];
+            for(let i=arr.length-1; i>week_range-1; i--){
+                let obj = {};
+                obj["current_port_value"] = arr[i].current_port_value;
+                obj["created_at"] = new Date(arr[i].created_at);
+                week_data.push(obj);
+            }
+            this.setState({one_week:week_data.reverse()});
+            
+        })
+
+
     
         this.props.receiveAllWatchLists(currentUser.id).then((resp)=>{
             let arr = Object.values(resp.watchlist);
@@ -120,8 +165,45 @@ class DashBoard extends React.Component{
     }
 
     render(){
-        
 
+        let current_change=0;
+        let current_percent_change=0;
+        const { news } = this.state;
+        let len = news.length;
+        let arr_news = []
+        if (news.length > 1) {
+            debugger
+            // if (news.length > 5) {
+            //     len = 4;
+
+            // }
+            
+            for (let i = 0; i < len; i++) {
+                arr_news.push(
+                    <div className="news-element">
+                        <div className="headline-source">
+                            <span className="source">{news[i].source}</span>
+                            <span className="headline"> {news[i].headline}</span>
+                        </div>
+
+                        <span>
+                            <a href={news[i].url}> <img src={news[i].image} className="news-image" />
+                            </a>
+                        </span>
+                    </div>
+
+                )
+            }
+
+
+        }
+
+        // if(this.state.current_value !== 0 && this.state.one_week.length !== 0){
+        //     debugger
+        //     current_change = this.state.current_value - this.state.week_data[this.state.week_data.length - 1].current_port_value;
+        //     current_percent_change = (this.state.current_value - this.state.week_data[this.state.week_data.length - 1].current_port_value) / 100;
+        // }
+       
         let bought_stocks = this.state.portfolio.map(stockObj =>{
 
             return(
@@ -176,8 +258,28 @@ class DashBoard extends React.Component{
                     <div className="graph-portfolio-container">
                         <div className="graph-user">
                             <div>
-                                {/* <span>Graph</span>  */}
-                                <span>${this.state.current_value.toFixed(3)}</span>
+                                <div>
+
+                                    <DashboardChart className="chart" data={this.state.one_week} currentValue={this.state.current_value}
+                                        change={current_change} percent_change={current_percent_change} />
+                                </div>
+                                <div className="chart-buttons">
+                                    {/* <button>1D</button> */}
+                                    <button>1W</button>
+                                    <button>1M</button>
+                                    {/* <button>3M</button>
+                                    <button>1Y</button> */}
+                                </div>
+                                <div>
+                                    <div className="news-header-container">
+                                        <span className="news-header">News</span>
+                                    </div>
+
+                                    <ul>
+                                        {arr_news}
+                                    </ul>
+                                </div>
+
                             </div>
                         </div>
                         <div className="sidebar-container">

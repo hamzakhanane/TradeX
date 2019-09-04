@@ -1,4 +1,4 @@
-import {RECEIVE_STOCK_INFO, RECEIVE_STOCK,RECEIVE_ALL_STOCKS, CREATE_TRANSACTION, CREATE_PORTFOLIO,GET_PORTFOLIO,GET_WATCHLIST, GET_ALL_TRANSACTIONS} from "../actions/stock_info_actions"
+import {RECEIVE_STOCK_INFO, RECEIVE_STOCK,RECEIVE_ALL_STOCKS, CREATE_TRANSACTION, CREATE_PORTFOLIO,GET_PORTFOLIO,GET_WATCHLIST, GET_ALL_TRANSACTIONS, GET_PORTFOLIO_RECORDS} from "../actions/stock_info_actions"
 
 
 
@@ -19,6 +19,8 @@ export const StockInfoReducer = (state = {}, action) => {
             return Object.assign({},state,{["portfolio"]:action.portfolio})
         case GET_ALL_TRANSACTIONS:
             return Object.assign({}, state, { ["transactions"]: action.transaction})
+        case GET_PORTFOLIO_RECORDS:
+            return Object.assign({}, state, { ["records"]: action.records })
         default:
             return state;
     }

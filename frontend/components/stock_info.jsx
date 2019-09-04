@@ -374,6 +374,7 @@ class StockInfo extends React.Component{
         
         let len = news.length;
         let arr_news=[]
+        debugger
         if(news.length>1){
             if (news.length > 5){
                 len = 4;
