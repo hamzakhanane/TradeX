@@ -55,7 +55,7 @@ class DashBoard extends React.Component{
             
             let trans = this.refactorDateTime(Object.values(resp.transaction));
             let currentDay= this.getDayData(trans);
-            debugger
+            
         })
 
         this.props.receivePortfolio(currentUser).then((resp) => {
