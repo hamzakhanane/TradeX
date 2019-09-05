@@ -106,7 +106,7 @@ class DashBoard extends React.Component{
                 obj["created_at"] = new Date();
                 week_data.push(obj);
                 this.setState({ one_week: week_data });
-                debugger
+               
             }
             else{
                 let arr = Object.values(resp.records);
