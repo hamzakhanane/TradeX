@@ -50,7 +50,9 @@ class DashBoard extends React.Component{
 
         this.props.receivePortfolio(currentUser).then((resp) => {
             let arr = Object.values(resp.portfolio);
+            //promise.all
             for(let i =0; i<arr.length; i++){
+
                 if(arr[i].num_stocks>0){
                    
                     let obj = {};
@@ -79,7 +81,7 @@ class DashBoard extends React.Component{
         //         let arr = Object.values(resp.records);
         //         let last_date = new Date(arr[arr.length-1].created_at);
         //         if(last_date.getDay()!==today.getDay){
-
+        //             // this.state.current_value
                     
         //         }
                
@@ -97,7 +99,7 @@ class DashBoard extends React.Component{
                 obj["created_at"] = new Date(arr[i].created_at);
                 week_data.push(obj);
             }
-            this.setState({one_week:week_data.reverse()});
+            this.setState({one_week:week_data});
             
         })
 
@@ -234,7 +236,7 @@ class DashBoard extends React.Component{
                                 <div className="chart-buttons">
                                     {/* <button>1D</button> */}
                                     <button>1W</button>
-                                    <button>1M</button>
+                                    {/* <button>1M</button> */}
                                     {/* <button>3M</button>
                                     <button>1Y</button> */}
                                 </div>
