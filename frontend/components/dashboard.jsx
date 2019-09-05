@@ -22,6 +22,14 @@ class DashBoard extends React.Component{
         this.props.logout(this.props.currentUser)
     }
 
+    isEmpty(obj) {
+    for (var key in obj) {
+        if (obj.hasOwnProperty(key))
+            return false;
+    }
+    return true;
+}
+
     componentDidMount(){
         let total = 0;
         let {currentUser} = this.props;
@@ -88,18 +96,41 @@ class DashBoard extends React.Component{
         //     })
 
         // }
+        
         this.props.getRecords(currentUser).then((resp)=>{
-            
-            let arr = Object.values(resp.records);
-            let week_range = arr.length - 6;
-            let week_data = [];
-            for(let i=arr.length-1; i>week_range-1; i--){
+           
+            if(this.isEmpty(resp.records)){
                 let obj = {};
-                obj["current_port_value"] = arr[i].current_port_value;
-                obj["created_at"] = new Date(arr[i].created_at);
+                let week_data = [];
+                obj["current_port_value"] = 0;
+                obj["created_at"] = new Date();
                 week_data.push(obj);
+                this.setState({ one_week: week_data });
+                debugger
             }
-            this.setState({one_week:week_data});
+            else{
+                let arr = Object.values(resp.records);
+                let week_range = arr.length - 6;
+                let week_data = [];
+                for (let i = arr.length - 1; i > week_range - 1; i--) {
+                    let obj = {};
+                    obj["current_port_value"] = arr[i].current_port_value;
+                    obj["created_at"] = new Date(arr[i].created_at);
+                    week_data.push(obj);
+                }
+                this.setState({ one_week: week_data });
+
+            }
+            // let arr = Object.values(resp.records);
+            // let week_range = arr.length - 6;
+            // let week_data = [];
+            // for(let i=arr.length-1; i>week_range-1; i--){
+            //     let obj = {};
+            //     obj["current_port_value"] = arr[i].current_port_value;
+            //     obj["created_at"] = new Date(arr[i].created_at);
+            //     week_data.push(obj);
+            // }
+            // this.setState({one_week:week_data});
             
         })
 

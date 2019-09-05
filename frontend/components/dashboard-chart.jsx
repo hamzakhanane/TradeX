@@ -25,6 +25,7 @@ export const DashboardChart = ({ data, currentValue, change, percent_change }) =
         let sign = "+";
         let pricediff = 0;
         let percentDiff = 0;
+        
 
 
         if (active === false) {
@@ -43,7 +44,10 @@ export const DashboardChart = ({ data, currentValue, change, percent_change }) =
 
             pricediff = currentValue - payload[0].value;
             percentDiff = (pricediff / currentValue) * (100);
-            if (percentDiff > 0) {
+            if(isNaN(percentDiff)){
+                percentDiff=0;
+            }
+            if (percentDiff >= 0) {
                 sign = "+";
             }
             else {
@@ -66,7 +70,7 @@ export const DashboardChart = ({ data, currentValue, change, percent_change }) =
     }
   
 
-    return (
+    return ( 
 
 
 
