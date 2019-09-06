@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html>
   <head>
+    
     <title>TradeX</title>
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
@@ -11,6 +12,7 @@
       window.iexAPIKeyPublishable = "<%= Rails.application.credentials.iex[:publishable_key_id] %>"
       window.iexAPIKeySecret = "<%= Rails.application.credentials.iex[:secret_access_key] %>"
     </script>
+    <%= favicon_link_tag asset_path('favi.png')%> 
   </head>
 
   <body>

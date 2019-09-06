@@ -79,11 +79,10 @@ class BuySellForm extends React.Component{
         let { currentUser } = this.props;
       
         if(this.state.button_text==="BUY"){
-            if(this.state.numShares<0){
-                this.setState({ message: "Please Enter A Valid Number" })
-            }
+            debugger
             
-            if (currentUser.buying_power >= this.state.totalCost) {
+            if (currentUser.buying_power >= this.state.totalCost && Number(this.state.numShares)>0) {
+                debugger
                 let trans = {};
                 let port = {};
                 let new_buying_power = currentUser.buying_power - this.state.totalCost;
@@ -147,6 +146,10 @@ class BuySellForm extends React.Component{
                 }
                 this.forceUpdate();
                
+            }
+            if(Number(this.state.numShares)<0){
+                document.getElementById("error").style.display = "block";
+                this.setState({ message: "Please Enter A Valid Number" });
             }
             else {
                 document.getElementById("error").style.display = "block";

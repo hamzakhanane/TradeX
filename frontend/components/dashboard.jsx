@@ -122,6 +122,7 @@ class DashBoard extends React.Component{
         });
 
         this.props.getRecords(currentUser).then((resp)=>{
+            debugger
             if(this.isEmpty(resp.records)){
                 let obj = {};
                 let week_data = [];

@@ -8,10 +8,7 @@ export const DashboardChart = ({ data, currentValue, change, percent_change }) =
         // debugger
         change = currentValue - data[0].current_port_value;
         percent_change = (change / currentValue) * 100;
-        // let obj = {};
-        // obj["current_port_value"] = currentValue;
-        // obj["created_at"] = new Date();
-        // data.push(obj);
+        
     
     }
     
