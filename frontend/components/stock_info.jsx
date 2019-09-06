@@ -398,6 +398,17 @@ class StockInfo extends React.Component{
 
                     <li className="dash-search"><SearchContainer /></li>
 
+                        <div className="logo-header">
+                            <div className="linkedin">
+                                <a className="links-color" href="https://www.linkedin.com/in/khananehamza/"><i class="fab fa-linkedin-in"></i></a>
+                                
+                            </div>
+                            <div>
+                                <a className="links-color" href="https://github.com/hamzakhanane"><i class="fab fa-github"></i></a>
+                                
+                            </div>
+                        </div>
+
 
                     <li className="logout-dash">
                             <button className="SignIn_Button" onClick={this.handleLogout}>Logout</button>

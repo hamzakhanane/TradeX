@@ -11,6 +11,29 @@
 
 }
 
+.fa-linkedin-in:before {
+    content: "\f0e1";
+    font-size: 20px;
+}
+.logo-header{
+    display: flex;
+    margin-left: 30%;
+    align-items: center;
+    justify-content: space-between;
+    
+}
+.links-color{
+    color: black;
+}
+.linkedin{
+    margin-right: 20%;
+}
+
+.fa-github:before {
+    content: "\f09b";
+    font-size: 20px;
+}
+
 
 .logout-dash{
     display: flex;
