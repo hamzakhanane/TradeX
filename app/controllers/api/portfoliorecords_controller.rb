@@ -18,6 +18,7 @@ class Api::PortfoliorecordsController < ApplicationController
         @portfolio_record = PortfolioRecord.new(portfolio_record_params)
         @portfolio_record.user_id = current_user.id
         if @portfolio_record.save
+            
             render :show
         else
             render json: @portfolio_record.errors.full_messages,  status: 422
@@ -27,6 +28,7 @@ class Api::PortfoliorecordsController < ApplicationController
 
     private
     def portfolio_record_params
+        
       params.require(:PortfolioRecord).permit(:current_port_value)
     end
 

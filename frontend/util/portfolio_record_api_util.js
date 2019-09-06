@@ -1,8 +1,7 @@
 export const createPortfolioRecord = (payload) => {
-
     return $.ajax({
         method: 'POST',
-        url: `/api/users/${payload.id}/portfoliorecords`,
+        url: `/api/users/${payload.PortfolioRecord.user_id}/portfoliorecords`,
         data: payload
     });
 }

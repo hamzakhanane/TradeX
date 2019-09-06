@@ -14,7 +14,8 @@ class DashBoard extends React.Component{
             watchlists: [],
             current_value: 0,
             one_week:[],
-            news: {}
+            news: {},
+            counter:0
         }
     }
 
@@ -35,12 +36,7 @@ class DashBoard extends React.Component{
         let {currentUser} = this.props;
        
         total += currentUser.buying_power;
-        // this.props.getTransactions(currentUser.id).then((resp)=>{
-            
-        //     let trans = this.refactorDateTime(Object.values(resp.transaction));
-        //     let currentDay= this.getDayData(trans);
-            
-        // })
+        
         fetchDashBoardNews("aapl,msft,googl")
             .then((news) => {
          
@@ -58,7 +54,15 @@ class DashBoard extends React.Component{
 
         this.props.receivePortfolio(currentUser).then((resp) => {
             let arr = Object.values(resp.portfolio);
-            //promise.all
+            let number_valid_stocks = 0;
+            for(let i=0; i<arr.length; i++){
+                if (arr[i].num_stocks > 0){
+                    number_valid_stocks++;
+                }
+            }
+        
+            
+
             for(let i =0; i<arr.length; i++){
 
                 if(arr[i].num_stocks>0){
@@ -67,12 +71,46 @@ class DashBoard extends React.Component{
                     obj["num_stocks"] = arr[i].num_stocks;
                     obj["stock_id"] = arr[i].stock_id;
                     this.props.fetchStock(arr[i].stock_id).then((resp)=>{
+                    
                         obj["ticker"] = resp.stock.ticker;
                         fetchQoutes(resp.stock.ticker).then((resp)=>{
-                           
                             obj["currentPrice"]=resp.latestPrice;
                             total += resp.latestPrice * arr[i].num_stocks;
                             this.setState({ current_value: total.toFixed(0) });
+                            let temp = this.state.counter;
+                            this.setState({counter:temp+1});
+                            if(this.state.counter===number_valid_stocks){
+                                
+                                let today = new Date();
+                                if (today.getHours() >= 17 && (today.getDay() !== 5 || today.getDay()!== 6)) {
+                                    this.props.getRecords(currentUser).then((resp) => {
+                                        let arr = Object.values(resp.records);
+                                        if(arr.length==0){
+                                            let obj = {};
+                                            obj["current_port_value"] = this.state.current_value;
+                                            obj["created_at"] = new Date();
+                                            obj["user_id"] = currentUser.id;
+                                            let new_object = {}
+                                            new_object["PortfolioRecord"] = obj;
+                                            this.props.createRecord(new_object);
+                                        }
+                                        let last_date = new Date(arr[arr.length-1].created_at);
+                                        if(last_date.getDay()!== today.getDay()){
+                            
+                                            let obj = {};
+                                            obj["current_port_value"] = this.state.current_value;
+                                            obj["created_at"] = new Date();
+                                            obj["user_id"] = currentUser.id;
+                                            let new_object={}
+                                            new_object["PortfolioRecord"] = obj;
+                                            this.props.createRecord(new_object);
+                                        }
+
+                                    })
+
+                                }
+                            
+                            }
                             let temp_arr = this.state.portfolio;
                             let temp_arr2 = temp_arr.concat(obj);
                             this.setState({ portfolio: temp_arr2 })
@@ -83,22 +121,7 @@ class DashBoard extends React.Component{
            
         });
 
-        // let today = new Date();
-        // if (today.getHours() >= 17 && (today.getDay() !== 5 || today.getDay())) {
-        //     this.props.getRecords(currentUser).then((resp) => {
-        //         let arr = Object.values(resp.records);
-        //         let last_date = new Date(arr[arr.length-1].created_at);
-        //         if(last_date.getDay()!==today.getDay){
-        //             // this.state.current_value
-                    
-        //         }
-               
-        //     })
-
-        // }
-        
         this.props.getRecords(currentUser).then((resp)=>{
-           
             if(this.isEmpty(resp.records)){
                 let obj = {};
                 let week_data = [];
@@ -106,31 +129,29 @@ class DashBoard extends React.Component{
                 obj["created_at"] = new Date();
                 week_data.push(obj);
                 this.setState({ one_week: week_data });
-               
             }
             else{
+                debugger
+
                 let arr = Object.values(resp.records);
-                let week_range = arr.length - 6;
+                let week_range = 0;
+                if(arr.length>=6){
+    
+                    week_range = arr.length - 6;
+                }else{
+                    week_range = arr.length;
+                }
                 let week_data = [];
-                for (let i = arr.length - 1; i > week_range - 1; i--) {
+                for (let i = arr.length-1; i >= week_range-1; i--) {
+    
                     let obj = {};
                     obj["current_port_value"] = arr[i].current_port_value;
                     obj["created_at"] = new Date(arr[i].created_at);
                     week_data.push(obj);
                 }
-                this.setState({ one_week: week_data });
+                this.setState({ one_week: week_data.reverse() });
 
             }
-            // let arr = Object.values(resp.records);
-            // let week_range = arr.length - 6;
-            // let week_data = [];
-            // for(let i=arr.length-1; i>week_range-1; i--){
-            //     let obj = {};
-            //     obj["current_port_value"] = arr[i].current_port_value;
-            //     obj["created_at"] = new Date(arr[i].created_at);
-            //     week_data.push(obj);
-            // }
-            // this.setState({one_week:week_data});
             
         })
 
