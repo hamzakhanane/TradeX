@@ -79,6 +79,10 @@ class BuySellForm extends React.Component{
         let { currentUser } = this.props;
       
         if(this.state.button_text==="BUY"){
+            if(this.state.numShares<0){
+                this.setState({ message: "Please Enter A Valid Number" })
+            }
+            
             if (currentUser.buying_power >= this.state.totalCost) {
                 let trans = {};
                 let port = {};
@@ -232,10 +236,16 @@ class BuySellForm extends React.Component{
     handleUpdate(type) {
         return (e) => {
             
-            this.setState({ [type]: e.target.value });
-            this.setState({ ["totalCost"]: Number(e.target.value) * Number(this.props.CurrentPrice)})
-        
+        this.setState({ [type]: e.target.value });
+        if(e.target.value<0){
+            this.setState({ message: "Please Enter A Valid Number" })
         }
+        else{
+            this.setState({ ["totalCost"]: Number(e.target.value) * Number(this.props.CurrentPrice) })
+        }
+
+        }
+    
     }
 
     clickSell(){
