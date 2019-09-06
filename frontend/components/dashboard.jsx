@@ -264,7 +264,35 @@ class DashBoard extends React.Component{
         
             return (
                 <div>
-                    <ul className="navbar">
+                    <div className="nav-container">
+
+
+                        <ul className="navbar">
+                            <li className="logo-container"><Link className="a_tag_dash" to="/dashboard">
+                                <img className="logo_image_signup_dash" src={window.logoImage} />
+                            </Link></li>
+
+                            <li className="dash-search"><SearchContainer /></li>
+
+                            <div className="logo-header">
+                                <div className="linkedin">
+                                    <a className="links-color" href="https://www.linkedin.com/in/khananehamza/"><i class="fab fa-linkedin-in"></i></a>
+
+                                </div>
+                                <div>
+                                    <a className="links-color" href="https://github.com/hamzakhanane"><i class="fab fa-github"></i></a>
+
+                                </div>
+                            </div>
+
+
+                            <li className="logout-dash">
+                                <button className="SignIn_Button" onClick={this.handleLogout}>Logout</button>
+                            </li>
+
+                        </ul>
+                    </div>
+                    {/* <ul className="navbar">
                         <li className="logo-container"><Link className="a_tag_dash" to="/dashboard">
                             <img className="logo_image_signup_dash" src={window.logoImage} />
                         </Link></li>
@@ -284,7 +312,7 @@ class DashBoard extends React.Component{
                             <button className="SignIn_Button" onClick={this.handleLogout}>Logout</button>  
                         </li>
                         
-                    </ul>
+                    </ul> */}
 
                     <div className="graph-portfolio-container">
                         <div className="graph-user">
