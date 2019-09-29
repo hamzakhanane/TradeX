@@ -19,5 +19,7 @@
  * Users are able to view their historical portfolio chart on the dashboard.
  * News for every company on the stock show page
  
+ # Stock Show Page/ Buy/Sell Form
+ 
 
   <a href="https://imgflip.com/gif/3bx081"><img src="https://i.imgflip.com/3bx081.gif" title="made at imgflip.com"/></a>
