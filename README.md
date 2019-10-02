@@ -23,3 +23,49 @@
  
 
   <a href="https://imgflip.com/gif/3bx081"><img src="https://i.imgflip.com/3bx081.gif" title="made at imgflip.com"/></a>
+  
+  ## Auto Complete Search Bar
+  * A search bar for users to search for any stocks listed on NASDAQ and NYSE. 
+  * sample code snippet for search bar
+  ```
+  constructor(props){
+        super(props);
+        this.state = {
+            searched_stock:[],
+            search_q: "",
+        }
+
+        this.queryUpdate = this.queryUpdate.bind(this);
+
+        
+    }
+
+    componentDidUpdate(prevProps){
+
+        if(prevProps.stocks !== this.props.stocks){
+            this.setState({ searched_stock: [] });
+        }
+    }
+
+    componentDidMount(){
+        
+        this.props.fetchAllStocks(this.state.search_q).then(stocks => this.setState({ searched_stock:this.props.stocks }));
+        
+    }
+
+    queryUpdate(e) { 
+        if(this.state.search_q.length===0){
+            this.setState({ searched_stock: [] })
+        }
+        this.setState({
+                search_q: e.target.value, 
+            
+        },
+            () => this.props.fetchAllStocks(this.state.search_q).then(stocks=>this.setState({ searched_stock: this.props.stocks }))
+        );
+    }
+
+
+  ```
+
+    
