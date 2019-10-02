@@ -20,10 +20,6 @@ class SearchComponent extends React.Component{
         if(prevProps.stocks !== this.props.stocks){
             this.setState({ searched_stock: [] });
         }
-
-        // this.setState({searched_stock:[]});
-        
-
     }
 
     componentDidMount(){
@@ -42,23 +38,7 @@ class SearchComponent extends React.Component{
         },
             () => this.props.fetchAllStocks(this.state.search_q).then(stocks=>this.setState({ searched_stock: this.props.stocks }))
         );
-
-        
-       
-
     }
-
-    // componentDidUpdate(prevProps){
-    //     if(this.state.search_q.length===0){
-    //         this.setState({searched_stock:[]})
-    //     }
-       
-        
-    // }
-          
-           
-
-   
 
     render(){
     
@@ -92,11 +72,7 @@ class SearchComponent extends React.Component{
        
        
         
-        return(
-
-
-            
-             
+        return(             
         <ul className="search-container">
             
            <li className="input-icons">
@@ -111,17 +87,9 @@ class SearchComponent extends React.Component{
                 </ul>
             </li>
         
-         </ul>
-               
-
-           
-        
-        
+         </ul>    
         );
-
     }
-
-
 }
 
 export default SearchComponent;
